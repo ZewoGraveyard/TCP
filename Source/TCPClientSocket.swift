@@ -81,7 +81,7 @@ public final class TCPClientSocket: TCPSocket {
             throw TCPError.Unknown(description: "Marks should be > 0")
         }
 
-        if lowWaterMark <= highWaterMark {
+        if lowWaterMark > highWaterMark {
             throw TCPError.Unknown(description: "loweWaterMark should be less than highWaterMark")
         }
 
