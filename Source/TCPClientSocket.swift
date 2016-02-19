@@ -77,6 +77,14 @@ public final class TCPClientSocket: TCPSocket {
     public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = noDeadline) throws -> Data {
         try assertNotClosed()
 
+        if lowWaterMark <= 0 || highWaterMark <= 0 {
+            throw TCPError.Unknown(description: "Marks should be > 0")
+        }
+
+        if lowWaterMark <= highWaterMark {
+            throw TCPError.Unknown(description: "loweWaterMark should be less than highWaterMark")
+        }
+
         var data = Data.bufferWithSize(highWaterMark)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvlh(socket, $0.baseAddress, lowWaterMark, highWaterMark, deadline)
