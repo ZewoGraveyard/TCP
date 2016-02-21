@@ -34,7 +34,7 @@ public final class TCPServerSocket: TCPSocket {
         try super.init(socket: tcpattach(fileDescriptor, 1))
     }
 
-    public func accept(deadline: Deadline = noDeadline) throws -> TCPClientSocket {
+    public func accept(deadline: Deadline = never) throws -> TCPClientSocket {
         try assertNotClosed()
         return try TCPClientSocket(socket: tcpaccept(socket, deadline))
     }

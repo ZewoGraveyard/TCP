@@ -30,7 +30,7 @@ public final class TCPClientSocket: TCPSocket {
         try super.init(socket: socket)
     }
 
-    public init(ip: IP, deadline: Deadline = noDeadline) throws {
+    public init(ip: IP, deadline: Deadline = never) throws {
         try super.init(socket: tcpconnect(ip.address, deadline))
     }
 
@@ -42,7 +42,7 @@ public final class TCPClientSocket: TCPSocket {
         return try! IP(address: tcpaddr(socket))
     }
 
-    public func send(data: Data, flush: Bool = true, deadline: Deadline = noDeadline) throws {
+    public func send(data: Data, flush: Bool = true, deadline: Deadline = never) throws {
         try assertNotClosed()
 
         let bytesProcessed = data.withUnsafeBufferPointer {
@@ -56,13 +56,13 @@ public final class TCPClientSocket: TCPSocket {
         }
     }
 
-    public func flush(deadline: Deadline = noDeadline) throws {
+    public func flush(deadline: Deadline = never) throws {
         try assertNotClosed()
         tcpflush(socket, deadline)
         try TCPError.assertNoError()
     }
 
-    public func receive(length length: Int, deadline: Deadline = noDeadline) throws -> Data {
+    public func receive(length length: Int, deadline: Deadline = never) throws -> Data {
         try assertNotClosed()
 
         var data = Data.bufferWithSize(length)
@@ -74,7 +74,7 @@ public final class TCPClientSocket: TCPSocket {
         return data.prefix(bytesProcessed)
     }
 
-    public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = noDeadline) throws -> Data {
+    public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = never) throws -> Data {
         try assertNotClosed()
 
         if lowWaterMark <= 0 || highWaterMark <= 0 {
@@ -94,7 +94,7 @@ public final class TCPClientSocket: TCPSocket {
         return data.prefix(bytesProcessed)
     }
 
-    public func receive(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = noDeadline) throws -> Data {
+    public func receive(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> Data {
         try assertNotClosed()
 
         var data = Data.bufferWithSize(length)
@@ -112,16 +112,16 @@ public final class TCPClientSocket: TCPSocket {
 }
 
 extension TCPClientSocket {
-    public func send(convertible: DataConvertible, deadline: Deadline = noDeadline) throws {
+    public func send(convertible: DataConvertible, deadline: Deadline = never) throws {
         try send(convertible.data, deadline: deadline)
     }
 
-    public func receiveString(length length: Int, deadline: Deadline = noDeadline) throws -> String {
+    public func receiveString(length length: Int, deadline: Deadline = never) throws -> String {
         let result = try receive(length: length, deadline: deadline)
         return try String(data: result)
     }
 
-    public func receiveString(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = noDeadline) throws -> String {
+    public func receiveString(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> String {
         let result = try receive(length: length, untilDelimiter: delimiter, deadline: deadline)
         return try String(data: result)
     }
