@@ -25,7 +25,7 @@
 @_exported import System
 @_exported import Data
 
-public enum TCPError: ErrorType {
+public enum TCPError: ErrorProtocol {
     case Unknown(description: String)
     case BrokenPipe(description: String, data: Data)
     case ConnectionResetByPeer(description: String, data: Data)
@@ -59,7 +59,7 @@ public enum TCPError: ErrorType {
     }
 
     static var lastErrorDescription: String {
-        return String.fromCString(strerror(errno))!
+        return String(validatingUTF8: strerror(errno))!
     }
 
     static var lastError: TCPError {
