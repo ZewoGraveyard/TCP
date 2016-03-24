@@ -1,4 +1,4 @@
-// TCPServerSocket.swift
+// TCP.swift
 //
 // The MIT License (MIT)
 //
@@ -22,23 +22,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import CLibvenice
-
-public final class TCPServerSocket: TCPSocket {
-    public init(ip: IP, backlog: Int = 128, reusePort: Bool = false) throws {
-        try super.init(socket: tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0))
-    }
-
-    public init(fileDescriptor: FileDescriptor) throws {
-        try super.init(socket: tcpattach(fileDescriptor, 1))
-    }
-
-    public func accept(deadline: Deadline = never) throws -> TCPClientSocket {
-        try assertNotClosed()
-        return try TCPClientSocket(socket: tcpaccept(socket, deadline))
-    }
-
-    public func attach(fileDescriptor: FileDescriptor) throws {
-        try super.attach(fileDescriptor, isServer: true)
-    }
-}
+@_exported import IP
+@_exported import OS
+@_exported import Data

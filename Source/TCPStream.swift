@@ -22,9 +22,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-@_exported import Stream
-
-public final class TCPStream: StreamType {
+public final class TCPStream: Stream {
     private(set) public var metadata: [String: Any] = [:]
     private let socket: TCPClientSocket
 
@@ -47,10 +45,10 @@ public final class TCPStream: StreamType {
         try assertNotClosed()
         do {
             return try socket.receive(lowWaterMark: lowWaterMark, highWaterMark: highWaterMark)
-        } catch TCPError.ConnectionResetByPeer(_, let data) {
-            throw StreamError.ClosedStream(data: data)
-        } catch TCPError.BrokenPipe(_, let data) {
-            throw StreamError.ClosedStream(data: data)
+        } catch TCPError.connectionResetByPeer(_, let data) {
+            throw StreamError.closedStream(data: data)
+        } catch TCPError.brokenPipe(_, let data) {
+            throw StreamError.closedStream(data: data)
         }
     }
 
@@ -58,10 +56,10 @@ public final class TCPStream: StreamType {
         try assertNotClosed()
         do {
             try socket.send(data, flush: false)
-        } catch TCPError.ConnectionResetByPeer(_, let data) {
-            throw StreamError.ClosedStream(data: data)
-        } catch TCPError.BrokenPipe(_, let data) {
-            throw StreamError.ClosedStream(data: data)
+        } catch TCPError.connectionResetByPeer(_, let data) {
+            throw StreamError.closedStream(data: data)
+        } catch TCPError.brokenPipe(_, let data) {
+            throw StreamError.closedStream(data: data)
         }
     }
 
@@ -69,10 +67,10 @@ public final class TCPStream: StreamType {
         try assertNotClosed()
         do {
             try socket.flush()
-        } catch TCPError.ConnectionResetByPeer(_, let data) {
-            throw StreamError.ClosedStream(data: data)
-        } catch TCPError.BrokenPipe(_, let data) {
-            throw StreamError.ClosedStream(data: data)
+        } catch TCPError.connectionResetByPeer(_, let data) {
+            throw StreamError.closedStream(data: data)
+        } catch TCPError.brokenPipe(_, let data) {
+            throw StreamError.closedStream(data: data)
         }
     }
 
@@ -82,22 +80,8 @@ public final class TCPStream: StreamType {
 
     private func assertNotClosed() throws {
         if closed {
-            throw StreamError.ClosedStream(data: nil)
+            throw StreamError.closedStream(data: nil)
         }
     }
 
-}
-
-extension StreamType {
-    public var ip: IP? {
-        get {
-            return metadata["ip"] as? IP
-        }
-    }
-
-    public var port: Int? {
-        get {
-            return metadata["port"] as? Int
-        }
-    }
 }

@@ -23,7 +23,6 @@
 // SOFTWARE.
 
 import CLibvenice
-@_exported import IP
 
 public final class TCPClientSocket: TCPSocket {
     override init(socket: tcpsock) throws {
@@ -78,11 +77,11 @@ public final class TCPClientSocket: TCPSocket {
         try assertNotClosed()
 
         if lowWaterMark <= 0 || highWaterMark <= 0 {
-            throw TCPError.Unknown(description: "Marks should be > 0")
+            throw TCPError.unknown(description: "Marks should be > 0")
         }
 
         if lowWaterMark > highWaterMark {
-            throw TCPError.Unknown(description: "loweWaterMark should be less than highWaterMark")
+            throw TCPError.unknown(description: "loweWaterMark should be less than highWaterMark")
         }
 
         var data = Data.bufferWithSize(highWaterMark)

@@ -22,9 +22,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-@_exported import Stream
-
-public struct TCPStreamClient: StreamClientType {
+public struct TCPStreamClient: StreamClient {
     private let ip: IP
     public let lowWaterMark: Int
     public let highWaterMark: Int
@@ -35,7 +33,7 @@ public struct TCPStreamClient: StreamClientType {
         self.highWaterMark = highWaterMark
     }
 
-    public func connect() throws -> StreamType {
+    public func connect() throws -> Stream {
         let socket = try TCPClientSocket(ip: ip)
         return TCPStream(socket: socket, lowWaterMark: lowWaterMark, highWaterMark: highWaterMark)
     }

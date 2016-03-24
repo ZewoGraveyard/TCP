@@ -22,9 +22,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-@_exported import Stream
-
-public struct TCPStreamServer: StreamServerType {
+public struct TCPStreamServer: StreamServer {
     let serverSocket: TCPServerSocket
     public let lowWaterMark: Int
     public let highWaterMark: Int
@@ -36,7 +34,7 @@ public struct TCPStreamServer: StreamServerType {
         self.highWaterMark = highWaterMark
     }
 
-    public func accept() throws -> StreamType {
+    public func accept() throws -> Stream {
         let socket = try serverSocket.accept()
         return TCPStream(socket: socket, lowWaterMark: lowWaterMark, highWaterMark: highWaterMark)
     }
