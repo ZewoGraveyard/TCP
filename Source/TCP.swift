@@ -23,5 +23,5 @@
 // SOFTWARE.
 
 @_exported import IP
-@_exported import OS
+@_exported import OperatingSystem
 @_exported import Data
