@@ -31,12 +31,12 @@ public enum TCPError: ErrorProtocol {
     case closedSocket(description: String)
 
     static func lastReceiveErrorWithData(source: Data, bytesProcessed: Int) -> TCPError {
-        let data = source.prefix(bytesProcessed)
+        let data = Data(source.prefix(bytesProcessed))
         return lastErrorWithData(data)
     }
 
     static func lastSendErrorWithData(source: Data, bytesProcessed: Int) -> TCPError {
-        let data = source.suffix(bytesProcessed)
+        let data = Data(source.suffix(bytesProcessed))
         return lastErrorWithData(data)
     }
 

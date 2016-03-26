@@ -70,7 +70,7 @@ public final class TCPClientSocket: TCPSocket {
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
-        return data.prefix(bytesProcessed)
+        return Data(data.prefix(bytesProcessed))
     }
 
     public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = never) throws -> Data {
@@ -90,7 +90,7 @@ public final class TCPClientSocket: TCPSocket {
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
-        return data.prefix(bytesProcessed)
+        return Data(data.prefix(bytesProcessed))
     }
 
     public func receive(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> Data {
@@ -102,7 +102,7 @@ public final class TCPClientSocket: TCPSocket {
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
-        return data.prefix(bytesProcessed)
+        return Data(data.prefix(bytesProcessed))
     }
 
     public func attach(fileDescriptor: FileDescriptor) throws {
