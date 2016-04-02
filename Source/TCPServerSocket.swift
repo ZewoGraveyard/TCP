@@ -26,13 +26,11 @@ import CLibvenice
 
 public final class TCPServerSocket: TCPSocket {
     public init(ip: IP, backlog: Int = 128, reusePort: Bool = false) throws {
-        let info = TCPSocketConnectionInfo(host: ip.host, port: ip.port, name: "TCPServerSocket")
-        try super.init(socket: tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0), connectionInfo: info)
+        try super.init(socket: tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0))
     }
 
     public init(fileDescriptor: FileDescriptor) throws {
-        let info = TCPSocketConnectionInfo(name: "TCPServerSocket")
-        try super.init(socket: tcpattach(fileDescriptor, 1), connectionInfo: info)
+        try super.init(socket: tcpattach(fileDescriptor, 1))
     }
 
     public func accept(deadline: Deadline = never) throws -> TCPClientSocket {
