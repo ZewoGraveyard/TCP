@@ -23,24 +23,42 @@
 // SOFTWARE.
 
 import CLibvenice
+import C7
 
-public class TCPSocket {
+public class TCPSocket : C7.Connection {
+    
+    public typealias StatusType = TCPSocketStatus
+    
     var socket: tcpsock
     public private(set) var closed = false
 
     public var port: Int {
         return Int(tcpport(socket))
     }
-
-    init(socket: tcpsock) throws {
-        self.socket = socket
-        try TCPError.assertNoError()
-    }
-
-    deinit {
-        if !closed && socket != nil {
-            tcpclose(socket)
+    
+    public var connectionInfo: ConnectionInfo
+    
+    public var status: StatusType {
+        if closed {
+            return .CLOSED
         }
+        else if let _ = mostRecentError {
+            return .IN_ERROR
+        }
+        return .OPEN
+    }
+    
+    public var mostRecentError: ErrorProtocol?
+
+    
+    public init(socket: tcpsock, connectionInfo info: TCPSocketConnectionInfo) throws {
+        self.socket = socket
+        self.connectionInfo = info
+        try open()
+    }
+    
+    public func open() throws {
+        try TCPError.assertNoError()
     }
 
     func attach(fileDescriptor: FileDescriptor, isServer: Bool) throws {
@@ -74,4 +92,11 @@ public class TCPSocket {
             throw TCPError.closedSocketError
         }
     }
+
+    deinit {
+        if !closed && socket != nil {
+            tcpclose(socket)
+        }
+    }
+
 }

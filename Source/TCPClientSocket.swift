@@ -25,18 +25,22 @@
 import CLibvenice
 
 public final class TCPClientSocket: TCPSocket {
-    override init(socket: tcpsock) throws {
-        try super.init(socket: socket)
+    public init(socket: tcpsock) throws {
+        let info = TCPSocketConnectionInfo(name: "TCPClientSocket")
+        try super.init(socket: socket, connectionInfo: info)
     }
 
     public init(ip: IP, deadline: Deadline = never) throws {
-        try super.init(socket: tcpconnect(ip.address, deadline))
+        let info = TCPSocketConnectionInfo(host: ip.host, port: ip.port, name: "TCPClientSocket")
+        try super.init(socket: tcpconnect(ip.address, deadline), connectionInfo: info)
+        try open()
     }
 
     public init(fileDescriptor: FileDescriptor) throws {
-        try super.init(socket: tcpattach(fileDescriptor, 0))
+        let info = TCPSocketConnectionInfo(name: "TCPClientSocket")
+        try super.init(socket: tcpattach(fileDescriptor, 0), connectionInfo: info)
     }
-
+    
     public var ip: IP {
         return try! IP(address: tcpaddr(socket))
     }
