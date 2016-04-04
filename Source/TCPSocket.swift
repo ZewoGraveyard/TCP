@@ -25,36 +25,24 @@
 import CLibvenice
 import C7
 
-public class TCPSocket : C7.Connection {
-    
+public class TCPSocket {
+
     var socket: tcpsock
     public private(set) var closed : Bool = false
-    
+
     public var uri : URI?
 
     public var port: Int {
         return Int(tcpport(socket))
     }
-    
+
     public init(socket: tcpsock) throws {
         self.socket = socket
         try open()
     }
-    
+
     public func open() throws {
         try TCPError.assertNoError()
-    }
-    
-    public func receive() throws -> Data {
-        fatalError("Not implemented")
-    }
-    
-    public func send(data: Data) throws {
-        fatalError("Not implemented")
-    }
-    
-    public func flush() throws {
-        fatalError("Not implemented")
     }
 
     func attach(fileDescriptor: FileDescriptor, isServer: Bool) throws {

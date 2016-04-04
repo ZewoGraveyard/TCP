@@ -24,7 +24,7 @@
 
 import CLibvenice
 
-public final class TCPClientSocket: TCPSocket {
+public final class TCPClientSocket: TCPSocket, C7.Connection {
     override public init(socket: tcpsock) throws {
         try super.init(socket: socket)
     }
@@ -55,10 +55,18 @@ public final class TCPClientSocket: TCPSocket {
         }
     }
 
-    public func flush(deadline: Deadline = never) throws {
+    public func send(data: Data) throws {
+      try self.send(data, flush:true, deadline: never)
+    }
+
+    public func flush(deadline: Deadline) throws {
         try assertNotClosed()
         tcpflush(socket, deadline)
         try TCPError.assertNoError()
+    }
+
+    public func flush() throws {
+      try self.flush(never)
     }
 
     public func receive(length length: Int, deadline: Deadline = never) throws -> Data {
@@ -71,6 +79,10 @@ public final class TCPClientSocket: TCPSocket {
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
+    }
+
+    public func receive() throws -> Data {
+      return try receive(length: Int.max)
     }
 
     public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = never) throws -> Data {
