@@ -25,6 +25,9 @@
 import CLibvenice
 
 public final class TCPClientSocket: TCPSocket, C7.Connection {
+
+    public var uri: URI?
+
     override public init(socket: tcpsock) throws {
         try super.init(socket: socket)
     }

@@ -28,9 +28,7 @@ import C7
 public class TCPSocket {
 
     var socket: tcpsock
-    public private(set) var closed : Bool = false
-
-    public var uri : URI?
+    public private(set) var closed = false
 
     public var port: Int {
         return Int(tcpport(socket))
