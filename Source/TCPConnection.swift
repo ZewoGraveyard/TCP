@@ -115,7 +115,7 @@ public final class TCPConnection: C7.Connection {
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func receive(upTo byteCount: Int, untilDelimiter delimiter: String, timingOut deadline: Deadline = never) throws -> Data {
+    public func receive(upTo byteCount: Int, until delimiter: String, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
@@ -175,8 +175,8 @@ extension TCPConnection {
         return try String(data: result)
     }
 
-    public func receiveString(upTo codeUnitCount: Int, untilDelimiter delimiter: String, timingOut deadline: Deadline = never) throws -> String {
-        let result = try receive(upTo: codeUnitCount, untilDelimiter: delimiter, timingOut: deadline)
+    public func receiveString(upTo codeUnitCount: Int, until delimiter: String, timingOut deadline: Deadline = never) throws -> String {
+        let result = try receive(upTo: codeUnitCount, until: delimiter, timingOut: deadline)
         return try String(data: result)
     }
 }
