@@ -77,10 +77,6 @@ public enum TCPError: ErrorProtocol {
     static var closedSocketError: TCPError {
         return TCPError.closedSocket(description: "Closed socket")
     }
-    
-    static var uninitializedSocket: TCPError {
-        return TCPError.closedSocket(description: "Socket has not been initialized. You must first connect to the socket.")
-    }
 
     static func assertNoError() throws {
         if errno != 0 {

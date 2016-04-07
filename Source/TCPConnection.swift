@@ -152,7 +152,7 @@ public final class TCPConnection: C7.Connection {
     
     func getSocket() throws -> tcpsock {
         guard let socket = self.socket else {
-            throw TCPError.uninitializedSocket
+            throw TCPError.closedSocket(description: "Socket has not been initialized. You must first connect to the socket.")
         }
         return socket
     }
