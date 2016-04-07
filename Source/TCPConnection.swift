@@ -47,31 +47,31 @@ public final class TCPConnection: C7.Connection {
     
     
     public func receive(max byteCount: Int) throws -> C7.Data {
-        return try receive(upTo: byteCount, deadline: never)
+        return try receive(upTo: byteCount, timingOut: never)
     }
     
     public func send(data: C7.Data) throws {
-        try send(data, flush: true, deadline: never)
+        try send(data, flush: true, timingOut: never)
     }
     
     public func flush() throws {
         try flush(never)
     }
 
-    public func flush(deadline: Deadline) throws {
+    public func flush(timingOut: timingOut) throws {
         let socket = try getSocket()
         try assertNotClosed()
         
-        tcpflush(socket, deadline)
+        tcpflush(socket, timingOut)
         try TCPError.assertNoError()
     }
 
-    public func send(data: Data, flush: Bool = true, deadline: Deadline = never) throws {
+    public func send(data: Data, flush: Bool = true, timingOut: timingOut = never) throws {
         let socket = try getSocket()
         try assertNotClosed()
         
         let bytesProcessed = data.withUnsafeBufferPointer {
-            tcpsend(socket, $0.baseAddress, $0.count, deadline)
+            tcpsend(socket, $0.baseAddress, $0.count, timingOut)
         }
 
         try TCPError.assertNoSendErrorWithData(data, bytesProcessed: bytesProcessed)
@@ -81,20 +81,20 @@ public final class TCPConnection: C7.Connection {
         }
     }
 
-    public func receive(upTo byteCount: Int, deadline: Deadline = never) throws -> Data {
+    public func receive(upTo byteCount: Int, timingOut: timingOut = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
         var data = Data.bufferWithSize(byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecv(socket, $0.baseAddress, $0.count, deadline)
+            tcprecv(socket, $0.baseAddress, $0.count, timingOut)
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = never) throws -> Data {
+    public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, timingOut: timingOut = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
@@ -108,21 +108,21 @@ public final class TCPConnection: C7.Connection {
 
         var data = Data.bufferWithSize(highWaterMark)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvlh(socket, $0.baseAddress, lowWaterMark, highWaterMark, deadline)
+            tcprecvlh(socket, $0.baseAddress, lowWaterMark, highWaterMark, timingOut)
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func receive(upTo byteCount: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> Data {
+    public func receive(upTo byteCount: Int, untilDelimiter delimiter: String, timingOut: timingOut = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
         
         var data = Data.bufferWithSize(byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline)
+            tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, timingOut)
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
@@ -158,10 +158,7 @@ public final class TCPConnection: C7.Connection {
     }
     
     deinit {
-        guard let socket = self.socket else {
-            return
-        }
-        if !closed && socket != nil {
+        if let socket = socket where !closed {
             tcpclose(socket)
         }
     }
@@ -169,17 +166,17 @@ public final class TCPConnection: C7.Connection {
 }
 
 extension TCPConnection {
-    public func send(convertible: DataConvertible, deadline: Deadline = never) throws {
-        try send(convertible.data, deadline: deadline)
+    public func send(convertible: DataConvertible, timingOut: timingOut = never) throws {
+        try send(convertible.data, timingOut: timingOut)
     }
 
-    public func receiveString(length length: Int, deadline: Deadline = never) throws -> String {
-        let result = try receive(upTo: length, deadline: deadline)
+    public func receiveString(length length: Int, timingOut: timingOut = never) throws -> String {
+        let result = try receive(upTo: length, timingOut: timingOut)
         return try String(data: result)
     }
 
-    public func receiveString(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> String {
-        let result = try receive(upTo: length, untilDelimiter: delimiter, deadline: deadline)
+    public func receiveString(length length: Int, untilDelimiter delimiter: String, timingOut: timingOut = never) throws -> String {
+        let result = try receive(upTo: length, untilDelimiter: delimiter, timingOut: timingOut)
         return try String(data: result)
     }
 }
