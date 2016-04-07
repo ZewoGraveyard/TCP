@@ -82,7 +82,6 @@ public final class TCPConnection: C7.Connection {
     }
 
     public func receive(upTo byteCount: Int, deadline: Deadline = never) throws -> Data {
-        
         let socket = try getSocket()
         try assertNotClosed()
 
@@ -96,7 +95,6 @@ public final class TCPConnection: C7.Connection {
     }
 
     public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = never) throws -> Data {
-        
         let socket = try getSocket()
         try assertNotClosed()
 
@@ -118,7 +116,6 @@ public final class TCPConnection: C7.Connection {
     }
 
     public func receive(upTo byteCount: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> Data {
-        
         let socket = try getSocket()
         try assertNotClosed()
 
@@ -135,7 +132,6 @@ public final class TCPConnection: C7.Connection {
 
     
     public func close() -> Bool {
-        
         guard let socket = self.socket else {
             closed = true
             return true
