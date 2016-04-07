@@ -40,16 +40,21 @@ public final class TCPStream: Stream {
     public var closed: Bool {
         return socket.closed
     }
-
-    public func receive() throws -> Data {
+    
+    
+    public func receive(max byteCount: Int) throws -> C7.Data {
         try assertNotClosed()
         do {
-            return try socket.receive(lowWaterMark: lowWaterMark, highWaterMark: highWaterMark)
+            return try socket.receive(lowWaterMark: lowWaterMark, highWaterMark: byteCount)
         } catch TCPError.connectionResetByPeer(_, let data) {
             throw StreamError.closedStream(data: data)
         } catch TCPError.brokenPipe(_, let data) {
             throw StreamError.closedStream(data: data)
         }
+    }
+
+    public func receive() throws -> Data {
+        return try receive(max: highWaterMark)
     }
 
     public func send(data: Data) throws {
