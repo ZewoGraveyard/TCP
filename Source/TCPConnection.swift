@@ -31,8 +31,8 @@ public final class TCPConnection: C7.Connection {
     var socket: tcpsock?
     public private(set) var closed = false
 
-    public init(to: C7.URI) throws {
-        uri = to
+    public init(to uri: C7.URI) throws {
+        self.uri = uri
     }
     
     public func open() throws {
