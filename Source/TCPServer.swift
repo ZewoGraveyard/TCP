@@ -55,7 +55,7 @@ public final class TCPServer {
         tcplisten(try IP(remoteAddress: host, port: port).address, backlog, reusePort ? 1 : 0)
     }
     
-    public func accept(deadline: Deadline = never) throws -> TCPConnection {
+    public func accept(timingOut deadline: Deadline = never) throws -> TCPConnection {
         connection = try TCPConnection(to: uri)
         
         guard let client = connection else {
