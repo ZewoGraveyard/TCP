@@ -33,13 +33,13 @@ public final class TCPServer {
     private var socket: tcpsock?
     private var connection: TCPConnection?
     
-    public init(to uri: C7.URI) throws {
+    public init(for uri: C7.URI) throws {
         self.uri = uri
         backlog = 128
         reusePort = false
     }
     
-    public init(to uri: URI, backlog: Int = 128, reusePort: Bool = false) throws {
+    public init(for uri: URI, backlog: Int = 128, reusePort: Bool = false) throws {
         self.uri = uri
         self.backlog = Int32(backlog)
         self.reusePort = reusePort
