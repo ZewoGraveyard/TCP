@@ -47,7 +47,7 @@ public final class TCPConnection: C7.Connection {
     
     
     public func receive(max byteCount: Int) throws -> C7.Data {
-        return try receive(length: byteCount, deadline: never)
+        return try receive(upTo: byteCount, deadline: never)
     }
     
     public func send(data: C7.Data) throws {
@@ -81,12 +81,12 @@ public final class TCPConnection: C7.Connection {
         try TCPError.assertNoError()
     }
 
-    public func receive(length length: Int, deadline: Deadline = never) throws -> Data {
+    public func receive(upTo byteCount: Int, deadline: Deadline = never) throws -> Data {
         
         let socket = try getSocket()
         try assertNotClosed()
 
-        var data = Data.bufferWithSize(length)
+        var data = Data.bufferWithSize(byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecv(socket, $0.baseAddress, $0.count, deadline)
         }
@@ -117,13 +117,13 @@ public final class TCPConnection: C7.Connection {
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func receive(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> Data {
+    public func receive(upTo byteCount: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> Data {
         
         let socket = try getSocket()
         try assertNotClosed()
 
         
-        var data = Data.bufferWithSize(length)
+        var data = Data.bufferWithSize(byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline)
         }
@@ -180,12 +180,12 @@ extension TCPConnection {
     }
 
     public func receiveString(length length: Int, deadline: Deadline = never) throws -> String {
-        let result = try receive(length: length, deadline: deadline)
+        let result = try receive(upTo: length, deadline: deadline)
         return try String(data: result)
     }
 
     public func receiveString(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> String {
-        let result = try receive(length: length, untilDelimiter: delimiter, deadline: deadline)
+        let result = try receive(upTo: length, untilDelimiter: delimiter, deadline: deadline)
         return try String(data: result)
     }
 }
