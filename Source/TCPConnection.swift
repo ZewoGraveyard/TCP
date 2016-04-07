@@ -172,10 +172,6 @@ public final class TCPConnection: C7.Connection {
         }
     }
 
-
-//    public func attach(fileDescriptor: FileDescriptor) throws {
-//        try super.attach(fileDescriptor, isServer: false)
-//    }
 }
 
 extension TCPConnection {
