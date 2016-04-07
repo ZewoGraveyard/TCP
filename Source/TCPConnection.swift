@@ -58,6 +58,14 @@ public final class TCPConnection: C7.Connection {
         try flush(never)
     }
 
+    public func flush(deadline: Deadline) throws {
+        let socket = try getSocket()
+        try assertNotClosed()
+        
+        tcpflush(socket, deadline)
+        try TCPError.assertNoError()
+    }
+
     public func send(data: Data, flush: Bool = true, deadline: Deadline = never) throws {
         let socket = try getSocket()
         try assertNotClosed()
@@ -71,14 +79,6 @@ public final class TCPConnection: C7.Connection {
         if flush {
             try self.flush()
         }
-    }
-
-    public func flush(deadline: Deadline = never) throws {
-        let socket = try getSocket()
-        try assertNotClosed()
-        
-        tcpflush(socket, deadline)
-        try TCPError.assertNoError()
     }
 
     public func receive(upTo byteCount: Int, deadline: Deadline = never) throws -> Data {
@@ -128,8 +128,6 @@ public final class TCPConnection: C7.Connection {
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
-    
-
     
     public func close() -> Bool {
         guard let socket = self.socket else {
