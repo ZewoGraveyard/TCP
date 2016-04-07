@@ -170,13 +170,13 @@ extension TCPConnection {
         try send(convertible.data, deadline: deadline)
     }
 
-    public func receiveString(length length: Int, timingOut deadline: Deadline = never) throws -> String {
-        let result = try receive(upTo: length, timingOut: deadline)
+    public func receiveString(upTo codeUnitCount: Int, timingOut deadline: Deadline = never) throws -> String {
+        let result = try receive(upTo: codeUnitCount, timingOut: deadline)
         return try String(data: result)
     }
 
-    public func receiveString(length length: Int, untilDelimiter delimiter: String, timingOut deadline: Deadline = never) throws -> String {
-        let result = try receive(upTo: length, untilDelimiter: delimiter, timingOut: deadline)
+    public func receiveString(upTo codeUnitCount: Int, untilDelimiter delimiter: String, timingOut deadline: Deadline = never) throws -> String {
+        let result = try receive(upTo: codeUnitCount, untilDelimiter: delimiter, timingOut: deadline)
         return try String(data: result)
     }
 }
