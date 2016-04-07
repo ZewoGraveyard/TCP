@@ -51,14 +51,14 @@ public final class TCPConnection: C7.Connection {
     }
     
     public func send(data: C7.Data) throws {
-        try send(data, flush: true, deadline: never)
+        try send(data, flushing: true, deadline: never)
     }
     
     public func flush() throws {
-        try flushing(timingOut: never)
+        try flush(timingOut: never)
     }
 
-    public func flushing(timingOut deadline: Deadline) throws {
+    public func flush(timingOut deadline: Deadline) throws {
         let socket = try getSocket()
         try assertNotClosed()
         
@@ -66,7 +66,7 @@ public final class TCPConnection: C7.Connection {
         try TCPError.assertNoError()
     }
 
-    public func send(data: Data, flush: Bool = true, deadline: Deadline = never) throws {
+    public func send(data: Data, flushing flush: Bool = true, deadline: Deadline = never) throws {
         let socket = try getSocket()
         try assertNotClosed()
         
