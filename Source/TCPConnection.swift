@@ -94,21 +94,21 @@ public final class TCPConnection: C7.Connection {
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, timingOut deadline: Deadline = never) throws -> Data {
+    public func receive(from start: Int, to end: Int, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
-        if lowWaterMark <= 0 || highWaterMark <= 0 {
+        if start <= 0 || end <= 0 {
             throw TCPError.unknown(description: "Marks should be > 0")
         }
 
-        if lowWaterMark > highWaterMark {
+        if start > end {
             throw TCPError.unknown(description: "loweWaterMark should be less than highWaterMark")
         }
 
-        var data = Data.bufferWithSize(highWaterMark)
+        var data = Data.bufferWithSize(end)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvlh(socket, $0.baseAddress, lowWaterMark, highWaterMark, deadline)
+            tcprecvlh(socket, $0.baseAddress, start, end, deadline)
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
