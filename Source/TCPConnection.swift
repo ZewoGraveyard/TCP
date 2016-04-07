@@ -1,4 +1,4 @@
-// TCPClientSocket.swift
+// TCPConnection.swift
 //
 // The MIT License (MIT)
 //
@@ -55,10 +55,10 @@ public final class TCPConnection: C7.Connection {
     }
     
     public func flush() throws {
-        try flush(timingOut: never)
+        try flushing(timingOut: never)
     }
 
-    public func flush(timingOut deadline: Deadline) throws {
+    public func flushing(timingOut deadline: Deadline) throws {
         let socket = try getSocket()
         try assertNotClosed()
         

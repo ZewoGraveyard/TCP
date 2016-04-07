@@ -1,4 +1,4 @@
-// TCPServerSocket.swift
+// TCPServer.swift
 //
 // The MIT License (MIT)
 //
