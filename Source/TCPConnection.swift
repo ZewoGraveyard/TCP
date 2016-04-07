@@ -23,27 +23,45 @@
 // SOFTWARE.
 
 import CLibvenice
+import C7
 
-public final class TCPClientSocket: TCPSocket {
-    override init(socket: tcpsock) throws {
-        try super.init(socket: socket)
+public final class TCPConnection: C7.Connection {
+    
+    public var uri: C7.URI
+    var socket: tcpsock?
+    public private(set) var closed = false
+
+    public init(to: C7.URI) throws {
+        uri = to
     }
-
-    public init(ip: IP, deadline: Deadline = never) throws {
-        try super.init(socket: tcpconnect(ip.address, deadline))
+    
+    public func open() throws {
+        guard let host = uri.host else {
+            throw TCPError.unknown(description: "Host was not defined in URI")
+        }
+        guard let port = uri.port else {
+            throw TCPError.unknown(description: "Port was not defined in URI")
+        }
+        tcpconnect(try IP(remoteAddress: host, port: port).address, never)
     }
-
-    public init(fileDescriptor: FileDescriptor) throws {
-        try super.init(socket: tcpattach(fileDescriptor, 0))
+    
+    
+    public func receive(max byteCount: Int) throws -> C7.Data {
+        return try receive(length: byteCount, deadline: never)
     }
-
-    public var ip: IP {
-        return try! IP(address: tcpaddr(socket))
+    
+    public func send(data: C7.Data) throws {
+        try send(data, flush: true, deadline: never)
+    }
+    
+    public func flush() throws {
+        try flush(never)
     }
 
     public func send(data: Data, flush: Bool = true, deadline: Deadline = never) throws {
+        let socket = try getSocket()
         try assertNotClosed()
-
+        
         let bytesProcessed = data.withUnsafeBufferPointer {
             tcpsend(socket, $0.baseAddress, $0.count, deadline)
         }
@@ -56,12 +74,16 @@ public final class TCPClientSocket: TCPSocket {
     }
 
     public func flush(deadline: Deadline = never) throws {
+        let socket = try getSocket()
         try assertNotClosed()
+        
         tcpflush(socket, deadline)
         try TCPError.assertNoError()
     }
 
     public func receive(length length: Int, deadline: Deadline = never) throws -> Data {
+        
+        let socket = try getSocket()
         try assertNotClosed()
 
         var data = Data.bufferWithSize(length)
@@ -74,6 +96,8 @@ public final class TCPClientSocket: TCPSocket {
     }
 
     public func receive(lowWaterMark lowWaterMark: Int, highWaterMark: Int, deadline: Deadline = never) throws -> Data {
+        
+        let socket = try getSocket()
         try assertNotClosed()
 
         if lowWaterMark <= 0 || highWaterMark <= 0 {
@@ -94,8 +118,11 @@ public final class TCPClientSocket: TCPSocket {
     }
 
     public func receive(length length: Int, untilDelimiter delimiter: String, deadline: Deadline = never) throws -> Data {
+        
+        let socket = try getSocket()
         try assertNotClosed()
 
+        
         var data = Data.bufferWithSize(length)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline)
@@ -104,13 +131,54 @@ public final class TCPClientSocket: TCPSocket {
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
+    
 
-    public func attach(fileDescriptor: FileDescriptor) throws {
-        try super.attach(fileDescriptor, isServer: false)
+    
+    public func close() -> Bool {
+        
+        guard let socket = self.socket else {
+            closed = true
+            return true
+        }
+        
+        if closed {
+            return false
+        }
+        
+        closed = true
+        tcpclose(socket)
+        return true
     }
+    
+    func getSocket() throws -> tcpsock {
+        guard let socket = self.socket else {
+            throw TCPError.uninitializedSocket
+        }
+        return socket
+    }
+    
+    func assertNotClosed() throws {
+        if closed {
+            throw TCPError.closedSocketError
+        }
+    }
+    
+    deinit {
+        guard let socket = self.socket else {
+            return
+        }
+        if !closed && socket != nil {
+            tcpclose(socket)
+        }
+    }
+
+
+//    public func attach(fileDescriptor: FileDescriptor) throws {
+//        try super.attach(fileDescriptor, isServer: false)
+//    }
 }
 
-extension TCPClientSocket {
+extension TCPConnection {
     public func send(convertible: DataConvertible, deadline: Deadline = never) throws {
         try send(convertible.data, deadline: deadline)
     }
