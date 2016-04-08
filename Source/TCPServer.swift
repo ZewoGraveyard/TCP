@@ -28,15 +28,11 @@ import C7
 public final class TCPServer {
     
     public let uri: URI
-    private let backlog: Int32
-    private let reusePort: Bool
     private let socket: tcpsock
     private var connection: TCPConnection?
     
     public init(for uri: URI) throws {
         self.uri = uri
-        backlog = 128
-        reusePort = false
         
         guard let host = uri.host else {
             throw TCPError.unknown(description: "Host was not defined in URI")
@@ -46,13 +42,11 @@ public final class TCPServer {
         }
         
         let ip = try IP(remoteAddress: host, port: port)
-        socket = tcplisten(ip.address, self.backlog, reusePort ? 1 : 0)
+        socket = tcplisten(ip.address, 128, 0)
     }
     
     public init(for uri: URI, queuing backlog: Int = 128, reusePort: Bool = false) throws {
         self.uri = uri
-        self.backlog = Int32(backlog)
-        self.reusePort = reusePort
         
         guard let host = uri.host else {
             throw TCPError.unknown(description: "Host was not defined in URI")
@@ -62,7 +56,7 @@ public final class TCPServer {
         }
         
         let ip = try IP(remoteAddress: host, port: port)
-        socket = tcplisten(ip.address, self.backlog, reusePort ? 1 : 0)
+        socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
     }
     
     public func accept(timingOut deadline: Deadline = never) throws -> Connection {
