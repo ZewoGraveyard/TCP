@@ -42,7 +42,7 @@ public final class TCPConnection: C7.Connection {
         guard let port = uri.port else {
             throw TCPError.unknown(description: "Port was not defined in URI")
         }
-        tcpconnect(try IP(remoteAddress: host, port: port).address, never)
+        socket = tcpconnect(try IP(remoteAddress: host, port: port).address, never)
     }
     
     
@@ -146,7 +146,7 @@ public final class TCPConnection: C7.Connection {
     
     func getSocket() throws -> tcpsock {
         guard let socket = self.socket else {
-            throw TCPError.closedSocket(description: "Socket has not been initialized. You must first connect to the socket.")
+            throw TCPError.closedSocket(description: "Socket has not been initialized. You must first open to the socket.")
         }
         return socket
     }
