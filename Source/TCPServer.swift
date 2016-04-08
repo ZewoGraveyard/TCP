@@ -49,7 +49,7 @@ public final class TCPServer {
         socket = tcplisten(ip.address, self.backlog, reusePort ? 1 : 0)
     }
     
-    public init(for uri: URI, backlog: Int = 128, reusePort: Bool = false) throws {
+    public init(for uri: URI, queuing backlog: Int = 128, reusePort: Bool = false) throws {
         self.uri = uri
         self.backlog = Int32(backlog)
         self.reusePort = reusePort
