@@ -30,20 +30,13 @@ public final class TCPServer {
     public var uri: C7.URI
     private let backlog: Int32
     private let reusePort: Bool
-    private var socket: tcpsock?
+    private var socket: tcpsock
     private var connection: TCPConnection?
     
     public init(for uri: C7.URI) throws {
         self.uri = uri
         backlog = 128
         reusePort = false
-    }
-    
-    public init(for uri: URI, backlog: Int = 128, reusePort: Bool = false) throws {
-        self.uri = uri
-        self.backlog = Int32(backlog)
-        self.reusePort = reusePort
-        
         
         guard let host = uri.host else {
             throw TCPError.unknown(description: "Host was not defined in URI")
@@ -51,14 +44,28 @@ public final class TCPServer {
         guard let port = uri.port else {
             throw TCPError.unknown(description: "Port was not defined in URI")
         }
-        socket = tcplisten(try IP(remoteAddress: host, port: port).address, self.backlog, reusePort ? 1 : 0)
+        
+        let ip = try IP(remoteAddress: host, port: port)
+        socket = tcplisten(ip.address, self.backlog, reusePort ? 1 : 0)
     }
     
-    public func accept(timingOut deadline: Deadline = never) throws -> TCPConnection {
-        guard let socket = socket else {
-            throw TCPError.unknown(description: "Failed to open TCP connection to \(uri)")
+    public init(for uri: URI, backlog: Int = 128, reusePort: Bool = false) throws {
+        self.uri = uri
+        self.backlog = Int32(backlog)
+        self.reusePort = reusePort
+        
+        guard let host = uri.host else {
+            throw TCPError.unknown(description: "Host was not defined in URI")
+        }
+        guard let port = uri.port else {
+            throw TCPError.unknown(description: "Port was not defined in URI")
         }
         
+        let ip = try IP(remoteAddress: host, port: port)
+        socket = tcplisten(ip.address, self.backlog, reusePort ? 1 : 0)
+    }
+    
+    public func accept(timingOut deadline: Deadline = never) throws -> C7.Connection {
         connection = try TCPConnection(with: tcpaccept(socket, deadline))
         
         guard let client = connection else {
