@@ -23,140 +23,148 @@
 // SOFTWARE.
 
 import CLibvenice
-import C7
+@_exported import C7
+@_exported import IP
+@_exported import Data
+@_exported import URI
 
 public final class TCPConnection: Connection {
-    
     public var uri: URI
     var socket: tcpsock?
     public private(set) var closed = true
-    
-    public init(to uri: URI) throws {
-        self.uri = uri
-    }
-    
-    public init (with socket: tcpsock) throws {
-        self.uri = URI()
+
+    init(with socket: tcpsock) throws {
+        self.uri = URI() // TODO: get the IP and port from socket and fill URI's host, and port
         self.socket = socket
         self.closed = false
         try assertNotClosed()
     }
-    
-    public func open() throws {
+
+    public init(to uri: URI) throws {
+        self.uri = uri
+    }
+
+    public convenience init(to uri: String) throws {
+        try self.init(to: URI(uri))
+    }
+
+    public func open(timingOut deadline: Deadline) throws {
         guard let host = uri.host else {
             throw TCPError.unknown(description: "Host was not defined in URI")
         }
+
         guard let port = uri.port else {
             throw TCPError.unknown(description: "Port was not defined in URI")
         }
-        socket = tcpconnect(try IP(remoteAddress: host, port: port).address, never)
-        if let socket = self.socket {
-            if socket == nil {
-                throw TCPError.closedSocket(description: "Unable to connect.")
-            }
-            else {
-                closed = false
-            }
+
+        let ip = try IP(remoteAddress: host, port: port)
+        let socket = tcpconnect(ip.address, deadline)
+
+        if socket == nil {
+            throw TCPError.closedSocket(description: "Unable to connect.")
         }
+
+        self.socket = socket
+        self.closed = false
     }
-    
+
     public func send(data: Data) throws {
         try send(data, flushing: true, deadline: never)
     }
-    
+
     public func send(data: Data, flushing flush: Bool = true, deadline: Deadline = never) throws {
         let socket = try getSocket()
         try assertNotClosed()
         let bytesProcessed = data.withUnsafeBufferPointer {
             tcpsend(socket, $0.baseAddress, $0.count, deadline)
         }
-        
+
         try TCPError.assertNoSendErrorWithData(data, bytesProcessed: bytesProcessed)
-        
+
         if flush {
             try self.flush()
         }
     }
-    
+
     public func flush() throws {
         try flush(timingOut: never)
     }
-    
+
     public func flush(timingOut deadline: Deadline) throws {
         let socket = try getSocket()
         try assertNotClosed()
-        
+
         tcpflush(socket, deadline)
         try TCPError.assertNoError()
     }
-    
+
     public func receive(max byteCount: Int) throws -> Data {
         return try receive(upTo: byteCount, timingOut: never)
     }
-    
+
     public func receive(upTo byteCount: Int, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
-        
+
         var data = Data.bufferWithSize(byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline)
         }
-        
+
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
-    
+
     public func receive(from start: Int, to end: Int, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
-        
+
         if start <= 0 || end <= 0 {
             throw TCPError.unknown(description: "Marks should be > 0")
         }
-        
+
         if start > end {
             throw TCPError.unknown(description: "loweWaterMark should be less than highWaterMark")
         }
-        
+
         var data = Data.bufferWithSize(end)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvlh(socket, $0.baseAddress, start, $0.count, deadline)
         }
-        
+
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
-    
+
     public func receive(upTo byteCount: Int, until delimiter: String, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
-        
-        
+
+
         var data = Data.bufferWithSize(byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline)
         }
-        
+
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
-    
+
     public func close() -> Bool {
         guard let socket = self.socket else {
             closed = true
             return true
         }
-        
+
         if closed {
             return false
         }
-        
+
         closed = true
         tcpclose(socket)
         return true
     }
-    
+
     private func getSocket() throws -> tcpsock {
         guard let socket = self.socket else {
             throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
@@ -166,31 +174,31 @@ public final class TCPConnection: Connection {
         }
         return socket
     }
-    
+
     private func assertNotClosed() throws {
         if closed {
             throw TCPError.closedSocketError
         }
     }
-    
+
     deinit {
         if let socket = socket where !closed {
             tcpclose(socket)
         }
     }
-    
+
 }
 
 extension TCPConnection {
     public func send(convertible: DataConvertible, timingOut deadline: Deadline = never) throws {
         try send(convertible.data, deadline: deadline)
     }
-    
+
     public func receiveString(upTo codeUnitCount: Int, timingOut deadline: Deadline = never) throws -> String {
         let result = try receive(upTo: codeUnitCount, timingOut: deadline)
         return try String(data: result)
     }
-    
+
     public func receiveString(upTo codeUnitCount: Int, until delimiter: String, timingOut deadline: Deadline = never) throws -> String {
         let result = try receive(upTo: codeUnitCount, until: delimiter, timingOut: deadline)
         return try String(data: result)

@@ -22,6 +22,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+@_exported import Data
+
 public enum TCPError: ErrorProtocol {
     case unknown(description: String)
     case brokenPipe(description: String, data: Data)
