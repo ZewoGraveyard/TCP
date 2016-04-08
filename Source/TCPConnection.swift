@@ -64,18 +64,6 @@ public final class TCPConnection: Connection {
         try send(data, flushing: true, deadline: never)
     }
     
-    public func flush() throws {
-        try flush(timingOut: never)
-    }
-    
-    public func flush(timingOut deadline: Deadline) throws {
-        let socket = try getSocket()
-        try assertNotClosed()
-        
-        tcpflush(socket, deadline)
-        try TCPError.assertNoError()
-    }
-    
     public func send(data: Data, flushing flush: Bool = true, deadline: Deadline = never) throws {
         let socket = try getSocket()
         try assertNotClosed()
@@ -88,6 +76,18 @@ public final class TCPConnection: Connection {
         if flush {
             try self.flush()
         }
+    }
+    
+    public func flush() throws {
+        try flush(timingOut: never)
+    }
+    
+    public func flush(timingOut deadline: Deadline) throws {
+        let socket = try getSocket()
+        try assertNotClosed()
+        
+        tcpflush(socket, deadline)
+        try TCPError.assertNoError()
     }
     
     public func receive(max byteCount: Int) throws -> Data {
@@ -157,7 +157,7 @@ public final class TCPConnection: Connection {
         return true
     }
     
-    func getSocket() throws -> tcpsock {
+    private func getSocket() throws -> tcpsock {
         guard let socket = self.socket else {
             throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
         }
@@ -167,7 +167,7 @@ public final class TCPConnection: Connection {
         return socket
     }
     
-    func assertNotClosed() throws {
+    private func assertNotClosed() throws {
         if closed {
             throw TCPError.closedSocketError
         }
