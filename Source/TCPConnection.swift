@@ -25,13 +25,13 @@
 import CLibvenice
 import C7
 
-public final class TCPConnection: C7.Connection {
+public final class TCPConnection: Connection {
     
-    public var uri: C7.URI
+    public var uri: URI
     var socket: tcpsock?
     public private(set) var closed = true
     
-    public init(to uri: C7.URI) throws {
+    public init(to uri: URI) throws {
         self.uri = uri
     }
     
@@ -60,7 +60,7 @@ public final class TCPConnection: C7.Connection {
         }
     }
     
-    public func send(data: C7.Data) throws {
+    public func send(data: Data) throws {
         try send(data, flushing: true, deadline: never)
     }
     
@@ -90,7 +90,7 @@ public final class TCPConnection: C7.Connection {
         }
     }
     
-    public func receive(max byteCount: Int) throws -> C7.Data {
+    public func receive(max byteCount: Int) throws -> Data {
         return try receive(upTo: byteCount, timingOut: never)
     }
     
