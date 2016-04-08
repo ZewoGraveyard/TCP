@@ -26,15 +26,15 @@ import CLibvenice
 import C7
 
 public final class TCPConnection: C7.Connection {
-
+    
     public var uri: C7.URI
     var socket: tcpsock?
     public private(set) var closed = true
-
+    
     public init(to uri: C7.URI) throws {
         self.uri = uri
     }
-
+    
     public func open() throws {
         guard let host = uri.host else {
             throw TCPError.unknown(description: "Host was not defined in URI")
@@ -52,15 +52,15 @@ public final class TCPConnection: C7.Connection {
             }
         }
     }
-
+    
     public func send(data: C7.Data) throws {
-        try send(data, flushing: false, deadline: never)
+        try send(data, flushing: true, deadline: never)
     }
-
+    
     public func flush() throws {
         try flush(timingOut: never)
     }
-
+    
     public func flush(timingOut deadline: Deadline) throws {
         let socket = try getSocket()
         try assertNotClosed()
@@ -68,7 +68,7 @@ public final class TCPConnection: C7.Connection {
         tcpflush(socket, deadline)
         try TCPError.assertNoError()
     }
-
+    
     public func send(data: Data, flushing flush: Bool = true, deadline: Deadline = never) throws {
         let socket = try getSocket()
         try assertNotClosed()
@@ -82,11 +82,11 @@ public final class TCPConnection: C7.Connection {
             try self.flush()
         }
     }
-
+    
     public func receive(max byteCount: Int) throws -> C7.Data {
         return try receive(upTo: byteCount, timingOut: never)
     }
-
+    
     public func receive(upTo byteCount: Int, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
@@ -99,7 +99,7 @@ public final class TCPConnection: C7.Connection {
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
-
+    
     public func receive(from start: Int, to end: Int, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
@@ -134,7 +134,7 @@ public final class TCPConnection: C7.Connection {
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
-
+    
     public func close() -> Bool {
         guard let socket = self.socket else {
             closed = true
@@ -149,7 +149,7 @@ public final class TCPConnection: C7.Connection {
         tcpclose(socket)
         return true
     }
-
+    
     func getSocket() throws -> tcpsock {
         guard let socket = self.socket else {
             throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
@@ -159,31 +159,31 @@ public final class TCPConnection: C7.Connection {
         }
         return socket
     }
-
+    
     func assertNotClosed() throws {
         if closed {
             throw TCPError.closedSocketError
         }
     }
-
+    
     deinit {
         if let socket = socket where !closed {
             tcpclose(socket)
         }
     }
-
+    
 }
 
 extension TCPConnection {
     public func send(convertible: DataConvertible, timingOut deadline: Deadline = never) throws {
         try send(convertible.data, deadline: deadline)
     }
-
+    
     public func receiveString(upTo codeUnitCount: Int, timingOut deadline: Deadline = never) throws -> String {
         let result = try receive(upTo: codeUnitCount, timingOut: deadline)
         return try String(data: result)
     }
-
+    
     public func receiveString(upTo codeUnitCount: Int, until delimiter: String, timingOut deadline: Deadline = never) throws -> String {
         let result = try receive(upTo: codeUnitCount, until: delimiter, timingOut: deadline)
         return try String(data: result)
