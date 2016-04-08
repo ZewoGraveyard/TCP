@@ -31,7 +31,6 @@ public final class TCPServer {
     private let backlog: Int32
     private let reusePort: Bool
     private var socket: tcpsock?
-    private var client: tcpsock?
     private var connection: TCPConnection?
     
     public init(for uri: C7.URI) throws {
@@ -56,19 +55,15 @@ public final class TCPServer {
     }
     
     public func accept(timingOut deadline: Deadline = never) throws -> TCPConnection {
-        connection = try TCPConnection(to: uri)
+        guard let socket = socket else {
+            throw TCPError.unknown(description: "Failed to open TCP connection to \(uri)")
+        }
+        
+        connection = try TCPConnection(with: tcpaccept(socket, deadline))
         
         guard let client = connection else {
             throw TCPError.unknown(description: "Failed to create TCP connection to \(uri)")
         }
-        
-        try client.open()
-        
-        guard let socket = client.socket else {
-            throw TCPError.unknown(description: "Failed to open TCP connection to \(uri)")
-        }
-        
-        tcpaccept(socket, deadline)
         
         return client
     }

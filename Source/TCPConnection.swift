@@ -35,6 +35,13 @@ public final class TCPConnection: C7.Connection {
         self.uri = uri
     }
     
+    public init (with socket: tcpsock) throws {
+        self.uri = URI()
+        self.socket = socket
+        self.closed = false
+        try assertNotClosed()
+    }
+    
     public func open() throws {
         guard let host = uri.host else {
             throw TCPError.unknown(description: "Host was not defined in URI")
