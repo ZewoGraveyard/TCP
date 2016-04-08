@@ -31,18 +31,8 @@ public final class TCPServer {
     private let socket: tcpsock
     private var connection: TCPConnection?
     
-    public init(for uri: URI) throws {
-        self.uri = uri
-        
-        guard let host = uri.host else {
-            throw TCPError.unknown(description: "Host was not defined in URI")
-        }
-        guard let port = uri.port else {
-            throw TCPError.unknown(description: "Port was not defined in URI")
-        }
-        
-        let ip = try IP(remoteAddress: host, port: port)
-        socket = tcplisten(ip.address, 128, 0)
+    public convenience init(for uri: URI) throws {
+        try self.init(for: uri, reusePort: false)
     }
     
     public init(for uri: URI, queuing backlog: Int = 128, reusePort: Bool = false) throws {
