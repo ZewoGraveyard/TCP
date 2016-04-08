@@ -27,7 +27,7 @@ import C7
 
 public final class TCPServer {
     
-    public var uri: C7.URI
+    public var uri: URI
     private let backlog: Int32
     private let reusePort: Bool
     private var socket: tcpsock
