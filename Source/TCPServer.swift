@@ -27,10 +27,10 @@ import C7
 
 public final class TCPServer {
     
-    public var uri: URI
+    public let uri: URI
     private let backlog: Int32
     private let reusePort: Bool
-    private var socket: tcpsock
+    private let socket: tcpsock
     private var connection: TCPConnection?
     
     public init(for uri: URI) throws {
