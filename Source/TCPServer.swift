@@ -44,7 +44,7 @@ public final class TCPServer: Host {
             throw TCPError.unknown(description: "Port was not defined in URI")
         }
 
-        let ip = try IP(remoteAddress: host, port: port)
+        let ip = try IP(localAddress: host, port: port)
 
         self.uri = uri
         self.socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
