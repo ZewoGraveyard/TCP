@@ -48,7 +48,7 @@ public final class TCPConnection: Connection {
         try self.init(to: URI(uri))
     }
 
-    public func open(timingOut deadline: Deadline) throws {
+    public func open(timingOut deadline: Double) throws {
         guard let host = uri.host else {
             throw TCPError.unknown(description: "Host was not defined in URI")
         }
@@ -56,33 +56,34 @@ public final class TCPConnection: Connection {
         guard let port = uri.port else {
             throw TCPError.unknown(description: "Port was not defined in URI")
         }
-
-        let ip = try IP(remoteAddress: host, port: port)
         
         if uri.host == "0.0.0.0" || uri.host == "127.0.0.1" {
-          socket = tcpconnect(try IP(localAddress: host, port: port).address, never)          
+          socket = tcpconnect(try IP(localAddress: host, port: port).address, Int64(deadline))
         }
         else {
-          socket = tcpconnect(try IP(remoteAddress: host, port: port).address, never)
+          socket = tcpconnect(try IP(remoteAddress: host, port: port).address, Int64(deadline))
         }
 
         if socket == nil {
             throw TCPError.closedSocket(description: "Unable to connect.")
         }
 
-        self.socket = socket
         self.closed = false
     }
 
     public func send(data: Data) throws {
-        try send(data, flushing: true, deadline: never)
+        try send(data, flushing: true, deadline: -1)
     }
-
-    public func send(data: Data, flushing flush: Bool = true, deadline: Deadline = never) throws {
+    
+    public func send(data: Data, timingOut deadline: Double) throws {
+        try send(data, flushing: true, deadline: deadline)
+    }
+    
+    public func send(data: Data, flushing flush: Bool = true, deadline: Double = -1) throws {
         let socket = try getSocket()
         try assertNotClosed()
         let bytesProcessed = data.withUnsafeBufferPointer {
-            tcpsend(socket, $0.baseAddress, $0.count, deadline)
+            tcpsend(socket, $0.baseAddress, $0.count, Int64(deadline))
         }
 
         try TCPError.assertNoSendErrorWithData(data, bytesProcessed: bytesProcessed)
@@ -93,26 +94,30 @@ public final class TCPConnection: Connection {
     }
 
     public func flush() throws {
-        try flush(timingOut: never)
+        try flush(timingOut: -1)
     }
-
-    public func flush(timingOut deadline: Deadline) throws {
+    
+    public func flush(timingOut deadline: Double) throws {
         let socket = try getSocket()
         try assertNotClosed()
 
-        tcpflush(socket, deadline)
+        tcpflush(socket, Int64(deadline))
         try TCPError.assertNoError()
     }
 
     public func receive(max byteCount: Int) throws -> Data {
         return try receive(upTo: byteCount, timingOut: never)
     }
+    
+    public func receive(upTo byteCount: Int, timingOut deadline: Double) throws -> Data {
+        return try receive(upTo: byteCount, timingOut: Int64(deadline))
+    }
 
     public func receive(upTo byteCount: Int, timingOut deadline: Deadline = never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
-        var data = Data.bufferWithSize(byteCount)
+        var data = Data.buffer(with: byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline)
         }
@@ -133,7 +138,7 @@ public final class TCPConnection: Connection {
             throw TCPError.unknown(description: "loweWaterMark should be less than highWaterMark")
         }
 
-        var data = Data.bufferWithSize(end)
+        var data = Data.buffer(with: end)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvlh(socket, $0.baseAddress, start, $0.count, deadline)
         }
@@ -147,7 +152,7 @@ public final class TCPConnection: Connection {
         try assertNotClosed()
 
 
-        var data = Data.bufferWithSize(byteCount)
+        var data = Data.buffer(with: byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
             tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline)
         }
@@ -197,7 +202,7 @@ public final class TCPConnection: Connection {
 
 extension TCPConnection {
     public func send(convertible: DataConvertible, timingOut deadline: Deadline = never) throws {
-        try send(convertible.data, deadline: deadline)
+        try send(convertible.data, deadline: Double(deadline))
     }
 
     public func receiveString(upTo codeUnitCount: Int, timingOut deadline: Deadline = never) throws -> String {

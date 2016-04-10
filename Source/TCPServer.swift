@@ -53,8 +53,8 @@ public final class TCPServer: Host {
     public convenience init(for uri: String, queuing backlog: Int = 128, reusingPort reusePort: Bool = false) throws {
         try self.init(for: URI(uri), queuing: backlog, reusingPort: false)
     }
-
-    public func accept(timingOut deadline: Deadline = never) throws -> Connection {
-        return try TCPConnection(with: tcpaccept(socket, deadline))
+    
+    public func accept(timingOut deadline: Double) throws -> Stream {
+        return try TCPConnection(with: tcpaccept(socket, Int64(deadline)))
     }
 }

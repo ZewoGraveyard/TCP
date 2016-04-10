@@ -64,13 +64,13 @@ public enum TCPError: ErrorProtocol {
     static var lastError: TCPError {
         switch errno {
         case EPIPE:
-            return .brokenPipe(description: lastErrorDescription, data: nil)
+            return .brokenPipe(description: lastErrorDescription, data: Data())
         case ECONNRESET:
-            return .connectionResetByPeer(description: lastErrorDescription, data: nil)
+            return .connectionResetByPeer(description: lastErrorDescription, data: Data())
         case ENOBUFS:
-            return .noBufferSpaceAvailabe(description: lastErrorDescription, data: nil)
+            return .noBufferSpaceAvailabe(description: lastErrorDescription, data: Data())
         case ETIMEDOUT:
-            return .operationTimedOut(description: lastErrorDescription, data: nil)
+            return .operationTimedOut(description: lastErrorDescription, data: Data())
         default:
             return .unknown(description: lastErrorDescription)
         }
