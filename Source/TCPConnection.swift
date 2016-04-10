@@ -58,7 +58,13 @@ public final class TCPConnection: Connection {
         }
 
         let ip = try IP(remoteAddress: host, port: port)
-        let socket = tcpconnect(ip.address, deadline)
+        
+        if uri.host == "0.0.0.0" || uri.host == "127.0.0.1" {
+          socket = tcpconnect(try IP(localAddress: host, port: port).address, never)          
+        }
+        else {
+          socket = tcpconnect(try IP(remoteAddress: host, port: port).address, never)
+        }
 
         if socket == nil {
             throw TCPError.closedSocket(description: "Unable to connect.")
