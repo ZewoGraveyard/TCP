@@ -26,7 +26,7 @@ co {
   }
 }
 
-let connection = try TCPConnection(to: URI("tcp://10.0.1.5:8080"))
+let connection = try TCPConnection(to: URI("tcp://127.0.0.1:8080"))
 try connection.open()
 try connection.send("hello")
 let data =  try connection.receive(upTo: 1024)
