@@ -72,14 +72,14 @@ public final class TCPConnection: Connection {
     }
 
     public func send(data: Data) throws {
-        try send(data, flushing: true, deadline: -1)
+        try send(data, flushing: true, deadline: .never)
     }
     
     public func send(data: Data, timingOut deadline: Double) throws {
         try send(data, flushing: true, deadline: deadline)
     }
     
-    public func send(data: Data, flushing flush: Bool = true, deadline: Double = -1) throws {
+    public func send(data: Data, flushing flush: Bool = true, deadline: Double = .never) throws {
         let socket = try getSocket()
         try assertNotClosed()
         let bytesProcessed = data.withUnsafeBufferPointer {
@@ -94,7 +94,7 @@ public final class TCPConnection: Connection {
     }
 
     public func flush() throws {
-        try flush(timingOut: -1)
+        try flush(timingOut: .never)
     }
     
     public func flush(timingOut deadline: Double) throws {
