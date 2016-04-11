@@ -25,7 +25,6 @@
 import CLibvenice
 @_exported import C7
 @_exported import IP
-@_exported import Data
 @_exported import URI
 
 public final class TCPServer: Host {

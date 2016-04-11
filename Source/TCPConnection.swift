@@ -25,7 +25,6 @@
 import CLibvenice
 @_exported import C7
 @_exported import IP
-@_exported import Data
 @_exported import URI
 
 public final class TCPConnection: Connection {
@@ -72,14 +71,14 @@ public final class TCPConnection: Connection {
     }
 
     public func send(data: Data) throws {
-        try send(data, flushing: true, deadline: .never)
+        try send(data, flushing: true, timingOut: .never)
     }
     
     public func send(data: Data, timingOut deadline: Double) throws {
-        try send(data, flushing: true, deadline: deadline)
+        try send(data, flushing: true, timingOut: deadline)
     }
     
-    public func send(data: Data, flushing flush: Bool = true, deadline: Double = .never) throws {
+    public func send(data: Data, flushing flush: Bool, timingOut deadline: Double) throws {
         let socket = try getSocket()
         try assertNotClosed()
         let bytesProcessed = data.withUnsafeBufferPointer {
@@ -106,27 +105,23 @@ public final class TCPConnection: Connection {
     }
 
     public func receive(max byteCount: Int) throws -> Data {
-        return try receive(upTo: byteCount, timingOut: never)
-    }
-    
-    public func receive(upTo byteCount: Int, timingOut deadline: Double) throws -> Data {
-        return try receive(upTo: byteCount, timingOut: Int64(deadline))
+        return try receive(upTo: byteCount, timingOut: .never)
     }
 
-    public func receive(upTo byteCount: Int, timingOut deadline: Deadline = never) throws -> Data {
+    public func receive(upTo byteCount: Int, timingOut deadline: Double = .never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
         var data = Data.buffer(with: byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline)
+            tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline.int64milliseconds)
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func receive(from start: Int, to end: Int, timingOut deadline: Deadline = never) throws -> Data {
+    public func receive(from start: Int, to end: Int, timingOut deadline: Double = .never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
@@ -140,21 +135,21 @@ public final class TCPConnection: Connection {
 
         var data = Data.buffer(with: end)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvlh(socket, $0.baseAddress, start, $0.count, deadline)
+            tcprecvlh(socket, $0.baseAddress, start, $0.count, deadline.int64milliseconds)
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func receive(upTo byteCount: Int, until delimiter: String, timingOut deadline: Deadline = never) throws -> Data {
+    public func receive(upTo byteCount: Int, until delimiter: String, timingOut deadline: Double = .never) throws -> Data {
         let socket = try getSocket()
         try assertNotClosed()
 
 
         var data = Data.buffer(with: byteCount)
         let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline)
+            tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline.int64milliseconds)
         }
 
         try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
@@ -201,16 +196,16 @@ public final class TCPConnection: Connection {
 }
 
 extension TCPConnection {
-    public func send(convertible: DataConvertible, timingOut deadline: Deadline = never) throws {
-        try send(convertible.data, deadline: Double(deadline))
+    public func send(convertible: DataConvertible, timingOut deadline: Double = .never) throws {
+        try send(convertible.data, timingOut: deadline)
     }
 
-    public func receiveString(upTo codeUnitCount: Int, timingOut deadline: Deadline = never) throws -> String {
+    public func receiveString(upTo codeUnitCount: Int, timingOut deadline: Double = .never) throws -> String {
         let result = try receive(upTo: codeUnitCount, timingOut: deadline)
         return try String(data: result)
     }
 
-    public func receiveString(upTo codeUnitCount: Int, until delimiter: String, timingOut deadline: Deadline = never) throws -> String {
+    public func receiveString(upTo codeUnitCount: Int, until delimiter: String, timingOut deadline: Double = .never) throws -> String {
         let result = try receive(upTo: codeUnitCount, until: delimiter, timingOut: deadline)
         return try String(data: result)
     }
