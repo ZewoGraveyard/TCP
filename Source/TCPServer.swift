@@ -1,4 +1,4 @@
-// TCPServerSocket.swift
+// TCPServer.swift
 //
 // The MIT License (MIT)
 //
@@ -23,22 +23,38 @@
 // SOFTWARE.
 
 import CLibvenice
+@_exported import C7
+@_exported import IP
+@_exported import Data
+@_exported import URI
 
-public final class TCPServerSocket: TCPSocket {
-    public init(ip: IP, backlog: Int = 128, reusePort: Bool = false) throws {
-        try super.init(socket: tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0))
+public final class TCPServer: Host {
+    public let uri: URI
+    private let socket: tcpsock
+
+    public convenience init(for uri: URI) throws {
+        try self.init(for: uri, reusingPort: false)
     }
 
-    public init(fileDescriptor: FileDescriptor) throws {
-        try super.init(socket: tcpattach(fileDescriptor, 1))
+    public init(for uri: URI, queuing backlog: Int = 128, reusingPort reusePort: Bool) throws {
+        guard let host = uri.host else {
+            throw TCPError.unknown(description: "Host was not defined in URI")
+        }
+        guard let port = uri.port else {
+            throw TCPError.unknown(description: "Port was not defined in URI")
+        }
+
+        let ip = try IP(localAddress: host, port: port)
+
+        self.uri = uri
+        self.socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
     }
 
-    public func accept(deadline: Deadline = never) throws -> TCPClientSocket {
-        try assertNotClosed()
-        return try TCPClientSocket(socket: tcpaccept(socket, deadline))
+    public convenience init(for uri: String, queuing backlog: Int = 128, reusingPort reusePort: Bool = false) throws {
+        try self.init(for: URI(uri), queuing: backlog, reusingPort: false)
     }
-
-    public func attach(fileDescriptor: FileDescriptor) throws {
-        try super.attach(fileDescriptor, isServer: true)
+    
+    public func accept(timingOut deadline: Double) throws -> Stream {
+        return try TCPConnection(with: tcpaccept(socket, Int64(deadline)))
     }
 }
