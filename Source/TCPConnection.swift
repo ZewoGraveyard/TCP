@@ -23,45 +23,30 @@
 // SOFTWARE.
 
 import CLibvenice
-@_exported import C7
 @_exported import IP
-@_exported import URI
 
 public final class TCPConnection: Connection {
-    public var uri: URI
+    public var ip: IP
     var socket: tcpsock?
     public private(set) var closed = true
 
     init(with socket: tcpsock) throws {
-        self.uri = URI() // TODO: get the IP and port from socket and fill URI's host, and port
+        self.ip = try IP(address: tcpaddr(socket))
         self.socket = socket
         self.closed = false
         try assertNotClosed()
     }
 
-    public init(to uri: URI) throws {
-        self.uri = uri
-    }
-
-    public convenience init(to uri: String) throws {
-        try self.init(to: URI(uri))
+    public init(to host: String, on port: Int) throws {
+        if host == "0.0.0.0" || host == "127.0.0.1" {
+            self.ip = try IP(localAddress: host, port: port)
+        } else {
+            self.ip = try IP(remoteAddress: host, port: port)
+        }
     }
 
     public func open(timingOut deadline: Double) throws {
-        guard let host = uri.host else {
-            throw TCPError.unknown(description: "Host was not defined in URI")
-        }
-
-        guard let port = uri.port else {
-            throw TCPError.unknown(description: "Port was not defined in URI")
-        }
-        
-        if uri.host == "0.0.0.0" || uri.host == "127.0.0.1" {
-          socket = tcpconnect(try IP(localAddress: host, port: port).address, Int64(deadline))
-        }
-        else {
-          socket = tcpconnect(try IP(remoteAddress: host, port: port).address, Int64(deadline))
-        }
+        socket = tcpconnect(ip.address, deadline.int64milliseconds)
 
         if socket == nil {
             throw TCPError.closedSocket(description: "Unable to connect.")

@@ -23,34 +23,14 @@
 // SOFTWARE.
 
 import CLibvenice
-@_exported import C7
 @_exported import IP
-@_exported import URI
 
 public final class TCPServer: Host {
-    public let uri: URI
     private let socket: tcpsock
 
-    public convenience init(for uri: URI) throws {
-        try self.init(for: uri, reusingPort: false)
-    }
-
-    public init(for uri: URI, queuing backlog: Int = 128, reusingPort reusePort: Bool) throws {
-        guard let host = uri.host else {
-            throw TCPError.unknown(description: "Host was not defined in URI")
-        }
-        guard let port = uri.port else {
-            throw TCPError.unknown(description: "Port was not defined in URI")
-        }
-
+    public init(at host: String, on port: Int, queuing backlog: Int = 128, reusingPort reusePort: Bool = false) throws {
         let ip = try IP(localAddress: host, port: port)
-
-        self.uri = uri
         self.socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
-    }
-
-    public convenience init(for uri: String, queuing backlog: Int = 128, reusingPort reusePort: Bool = false) throws {
-        try self.init(for: URI(uri), queuing: backlog, reusingPort: false)
     }
     
     public func accept(timingOut deadline: Double) throws -> Stream {
