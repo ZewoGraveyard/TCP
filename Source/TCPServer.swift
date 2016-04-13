@@ -31,6 +31,10 @@ public final class TCPServer: Host {
     public init(at host: String, on port: Int, queuing backlog: Int = 128, reusingPort reusePort: Bool = false) throws {
         let ip = try IP(localAddress: host, port: port)
         self.socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
+        if nil == self.socket {
+            print("\n\nPort \(port) is already in use.\n\n")
+            throw TCPError.unknown(description: "Port \(port) is already in use.")
+        }
     }
     
     public func accept(timingOut deadline: Double) throws -> Stream {
