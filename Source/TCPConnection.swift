@@ -55,22 +55,22 @@ public final class TCPConnection: Connection {
         self.closed = false
     }
 
-    public func send(data: Data) throws {
+    public func send(_ data: Data) throws {
         try send(data, flushing: true, timingOut: .never)
     }
     
-    public func send(data: Data, timingOut deadline: Double) throws {
+    public func send(_ data: Data, timingOut deadline: Double) throws {
         try send(data, flushing: true, timingOut: deadline)
     }
     
-    public func send(data: Data, flushing flush: Bool, timingOut deadline: Double) throws {
+    public func send(_ data: Data, flushing flush: Bool, timingOut deadline: Double) throws {
         let socket = try getSocket()
         try assertNotClosed()
         let bytesProcessed = data.withUnsafeBufferPointer {
             tcpsend(socket, $0.baseAddress, $0.count, Int64(deadline))
         }
 
-        try TCPError.assertNoSendErrorWithData(data, bytesProcessed: bytesProcessed)
+        try TCPError.assertNoSendError(withData: data, bytesProcessed: bytesProcessed)
 
         if flush {
             try self.flush()
@@ -102,7 +102,7 @@ public final class TCPConnection: Connection {
             tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline.int64milliseconds)
         }
 
-        try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
+        try TCPError.assertNoReceiveError(withData: data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
 
@@ -123,7 +123,7 @@ public final class TCPConnection: Connection {
             tcprecvlh(socket, $0.baseAddress, start, $0.count, deadline.int64milliseconds)
         }
 
-        try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
+        try TCPError.assertNoReceiveError(withData: data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
 
@@ -137,7 +137,7 @@ public final class TCPConnection: Connection {
             tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline.int64milliseconds)
         }
 
-        try TCPError.assertNoReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
+        try TCPError.assertNoReceiveError(withData: data, bytesProcessed: bytesProcessed)
         return Data(data.prefix(bytesProcessed))
     }
 
@@ -160,9 +160,6 @@ public final class TCPConnection: Connection {
         guard let socket = self.socket else {
             throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
         }
-        if socket == nil {
-            throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
-        }
         return socket
     }
 
@@ -181,7 +178,7 @@ public final class TCPConnection: Connection {
 }
 
 extension TCPConnection {
-    public func send(convertible: DataConvertible, timingOut deadline: Double = .never) throws {
+    public func send(_ convertible: DataConvertible, timingOut deadline: Double = .never) throws {
         try send(convertible.data, timingOut: deadline)
     }
 

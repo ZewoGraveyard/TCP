@@ -30,17 +30,17 @@ public enum TCPError: ErrorProtocol {
     case operationTimedOut(description: String, data: Data)
     case closedSocket(description: String)
 
-    static func lastReceiveErrorWithData(source: Data, bytesProcessed: Int) -> TCPError {
+    static func lastReceiveError(withData source: Data, bytesProcessed: Int) -> TCPError {
         let data = Data(source.prefix(bytesProcessed))
-        return lastErrorWithData(data)
+        return lastError(withData: data)
     }
 
-    static func lastSendErrorWithData(source: Data, bytesProcessed: Int) -> TCPError {
+    static func lastSendError(withData source: Data, bytesProcessed: Int) -> TCPError {
         let data = Data(source.suffix(bytesProcessed))
-        return lastErrorWithData(data)
+        return lastError(withData: data)
     }
 
-    static func lastErrorWithData(data: Data) -> TCPError {
+    static func lastError(withData data: Data) -> TCPError {
         switch errno {
         case EPIPE:
             return .brokenPipe(description: lastErrorDescription, data: data)
@@ -84,15 +84,15 @@ public enum TCPError: ErrorProtocol {
         }
     }
 
-    static func assertNoReceiveErrorWithData(data: Data, bytesProcessed: Int) throws {
+    static func assertNoReceiveError(withData data: Data, bytesProcessed: Int) throws {
         if errno != 0 {
-            throw TCPError.lastReceiveErrorWithData(data, bytesProcessed: bytesProcessed)
+            throw TCPError.lastReceiveError(withData: data, bytesProcessed: bytesProcessed)
         }
     }
 
-    static func assertNoSendErrorWithData(data: Data, bytesProcessed: Int) throws {
+    static func assertNoSendError(withData data: Data, bytesProcessed: Int) throws {
         if errno != 0 {
-            throw TCPError.lastSendErrorWithData(data, bytesProcessed: bytesProcessed)
+            throw TCPError.lastSendError(withData: data, bytesProcessed: bytesProcessed)
         }
     }
 }
