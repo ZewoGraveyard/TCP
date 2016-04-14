@@ -141,19 +141,18 @@ public final class TCPConnection: Connection {
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func close() -> Bool {
+    public func close() {
         guard let socket = self.socket else {
-            closed = true
-            return true
+            closed = true;
+            return
         }
 
         if closed {
-            return false
+            return
         }
 
         closed = true
         tcpclose(socket)
-        return true
     }
 
     private func getSocket() throws -> tcpsock {
