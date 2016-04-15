@@ -141,14 +141,14 @@ public final class TCPConnection: Connection {
         return Data(data.prefix(bytesProcessed))
     }
 
-    public func close() {
+    public func close() throws {
         guard let socket = self.socket else {
-            closed = true;
-            return
+            closed = true
+            throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
         }
 
         if closed {
-            return
+            throw ClosableError.alreadyClosed
         }
 
         closed = true
