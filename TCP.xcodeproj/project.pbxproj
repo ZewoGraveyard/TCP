@@ -1,0 +1,1411 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE100BD91CC0C1360074900D /* libC7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_C7" /* libC7.dylib */; };
+		BE100BDA1CC0C1360074900D /* libCLibvenice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibvenice" /* libCLibvenice.dylib */; };
+		BE100BDB1CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_OperatingSystem" /* libOperatingSystem.dylib */; };
+		BE100BDC1CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_OperatingSystem" /* libOperatingSystem.dylib */; };
+		BE100BDD1CC0C1360074900D /* libC7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_C7" /* libC7.dylib */; };
+		BE100BDE1CC0C1360074900D /* libCLibvenice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibvenice" /* libCLibvenice.dylib */; };
+		BE100BDF1CC0C1360074900D /* libC7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_C7" /* libC7.dylib */; };
+		BE100BE01CC0C1360074900D /* libCURIParser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CURIParser" /* libCURIParser.dylib */; };
+		BE100BE11CC0C1360074900D /* libString.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_String" /* libString.dylib */; };
+		BE100BE21CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_OperatingSystem" /* libOperatingSystem.dylib */; };
+		BE100BE31CC0C1360074900D /* libVenice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Venice" /* libVenice.dylib */; };
+		BE100BE41CC0C1360074900D /* libCLibvenice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibvenice" /* libCLibvenice.dylib */; };
+		BE100BE51CC0C1360074900D /* libC7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_C7" /* libC7.dylib */; };
+		BE100BE61CC0C1360074900D /* libCURIParser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CURIParser" /* libCURIParser.dylib */; };
+		BE100BE71CC0C1360074900D /* libString.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_String" /* libString.dylib */; };
+		BE100BE81CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_OperatingSystem" /* libOperatingSystem.dylib */; };
+		BE100BE91CC0C1360074900D /* libVenice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Venice" /* libVenice.dylib */; };
+		BE100BEA1CC0C1360074900D /* libURI.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_URI" /* libURI.dylib */; };
+		BE100BEB1CC0C1360074900D /* libIP.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_IP" /* libIP.dylib */; };
+		_LinkFileRef_C7 /* libC7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_C7" /* libC7.dylib */; };
+		_LinkFileRef_CLibvenice /* libCLibvenice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibvenice" /* libCLibvenice.dylib */; };
+		_LinkFileRef_CURIParser /* libCURIParser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CURIParser" /* libCURIParser.dylib */; };
+		_LinkFileRef_IP /* libIP.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_IP" /* libIP.dylib */; };
+		_LinkFileRef_OperatingSystem /* libOperatingSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_OperatingSystem" /* libOperatingSystem.dylib */; };
+		_LinkFileRef_String /* libString.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_String" /* libString.dylib */; };
+		_LinkFileRef_TCP /* libTCP.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_TCP" /* libTCP.dylib */; };
+		_LinkFileRef_URI /* libURI.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_URI" /* libURI.dylib */; };
+		_LinkFileRef_Venice /* libVenice.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Venice" /* libVenice.dylib */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncConnection.swift" /* AsyncConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncConnection.swift" /* AsyncConnection.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncHost.swift" /* AsyncHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncHost.swift" /* AsyncHost.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncStream.swift" /* AsyncStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncStream.swift" /* AsyncStream.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncURIConnection.swift" /* AsyncURIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncURIConnection.swift" /* AsyncURIConnection.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Byte.swift" /* Byte.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Byte.swift" /* Byte.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/C7.swift" /* C7.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/C7.swift" /* C7.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/CaseInsensitiveString.swift" /* CaseInsensitiveString.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/CaseInsensitiveString.swift" /* CaseInsensitiveString.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Closable.swift" /* Closable.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Closable.swift" /* Closable.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Connection.swift" /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Connection.swift" /* Connection.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/CustomDataStore.swift" /* CustomDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/CustomDataStore.swift" /* CustomDataStore.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Data.swift" /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Data.swift" /* Data.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Drain.swift" /* Drain.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Drain.swift" /* Drain.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Host.swift" /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Host.swift" /* Host.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Query.swift" /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Query.swift" /* Query.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/QueryField.swift" /* QueryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/QueryField.swift" /* QueryField.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Stream.swift" /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Stream.swift" /* Stream.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/StreamError.swift" /* StreamError.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/StreamError.swift" /* StreamError.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/StreamSequence.swift" /* StreamSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/StreamSequence.swift" /* StreamSequence.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/Time.swift" /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/Time.swift" /* Time.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/URI.swift" /* URI.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/URI.swift" /* URI.swift */; };
+		"__src_cc_ref_Packages/C7-0.4.2/Sources/URIConnection.swift" /* URIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/C7-0.4.2/Sources/URIConnection.swift" /* URIConnection.swift */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/chan.c" /* chan.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/chan.c" /* chan.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/cr.c" /* cr.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/cr.c" /* cr.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/debug.c" /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/debug.c" /* debug.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/dns.c" /* dns.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/dns.c" /* dns.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/file.c" /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/file.c" /* file.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/ip.c" /* ip.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/ip.c" /* ip.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/list.c" /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/list.c" /* list.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/poller.c" /* poller.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/poller.c" /* poller.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/slist.c" /* slist.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/slist.c" /* slist.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/stack.c" /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/stack.c" /* stack.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/tcp.c" /* tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/tcp.c" /* tcp.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/timer.c" /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/timer.c" /* timer.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/udp.c" /* udp.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/udp.c" /* udp.c */; };
+		"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/unix.c" /* unix.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/unix.c" /* unix.c */; };
+		"__src_cc_ref_Packages/CURIParser-0.4.0/uri_parser.c" /* uri_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/CURIParser-0.4.0/uri_parser.c" /* uri_parser.c */; };
+		"__src_cc_ref_Packages/IP-0.4.3/Source/IP.swift" /* IP.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/IP-0.4.3/Source/IP.swift" /* IP.swift */; };
+		"__src_cc_ref_Packages/IP-0.4.3/Source/IPError.swift" /* IPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/IP-0.4.3/Source/IPError.swift" /* IPError.swift */; };
+		"__src_cc_ref_Packages/OperatingSystem-0.4.2/Sources/OperatingSystem.swift" /* OperatingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/OperatingSystem-0.4.2/Sources/OperatingSystem.swift" /* OperatingSystem.swift */; };
+		"__src_cc_ref_Packages/String-0.4.3/Source/String.swift" /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/String-0.4.3/Source/String.swift" /* String.swift */; };
+		"__src_cc_ref_Packages/URI-0.4.7/Sources/URI.swift" /* URI.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/URI-0.4.7/Sources/URI.swift" /* URI.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Channel/Channel.swift" /* Channel/Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/Channel.swift" /* Channel/Channel.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Channel/ReceivingChannel.swift" /* Channel/ReceivingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/ReceivingChannel.swift" /* Channel/ReceivingChannel.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Channel/SendingChannel.swift" /* Channel/SendingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/SendingChannel.swift" /* Channel/SendingChannel.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Coroutine/Coroutine.swift" /* Coroutine/Coroutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Coroutine/Coroutine.swift" /* Coroutine/Coroutine.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleChannel.swift" /* FallibleChannel/FallibleChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleChannel.swift" /* FallibleChannel/FallibleChannel.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleReceivingChannel.swift" /* FallibleChannel/FallibleReceivingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleReceivingChannel.swift" /* FallibleChannel/FallibleReceivingChannel.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleSendingChannel.swift" /* FallibleChannel/FallibleSendingChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleSendingChannel.swift" /* FallibleChannel/FallibleSendingChannel.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Once/Once.swift" /* Once/Once.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Once/Once.swift" /* Once/Once.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Poll/Poll.swift" /* Poll/Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Poll/Poll.swift" /* Poll/Poll.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Select/Select.swift" /* Select/Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Select/Select.swift" /* Select/Select.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/TImer/Timer.swift" /* TImer/Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/TImer/Timer.swift" /* TImer/Timer.swift */; };
+		"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Ticker/Ticker.swift" /* Ticker/Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = "__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Ticker/Ticker.swift" /* Ticker/Ticker.swift */; };
+		__src_cc_ref_Source/TCPConnection.swift /* TCPConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Source/TCPConnection.swift /* TCPConnection.swift */; };
+		__src_cc_ref_Source/TCPError.swift /* TCPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Source/TCPError.swift /* TCPError.swift */; };
+		__src_cc_ref_Source/TCPServer.swift /* TCPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Source/TCPServer.swift /* TCPServer.swift */; };
+		__src_cc_ref_Tests/TCP/TCPServerTests.swift /* TCPServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/TCP/TCPServerTests.swift /* TCPServerTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE100BEC1CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_C7";
+			remoteInfo = C7;
+		};
+		BE100BED1CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_CLibvenice";
+			remoteInfo = CLibvenice;
+		};
+		BE100BEE1CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_OperatingSystem";
+			remoteInfo = OperatingSystem;
+		};
+		BE100BEF1CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Venice";
+			remoteInfo = Venice;
+		};
+		BE100BF01CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_CURIParser";
+			remoteInfo = CURIParser;
+		};
+		BE100BF11CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_String";
+			remoteInfo = String;
+		};
+		BE100BF21CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_URI";
+			remoteInfo = URI;
+		};
+		BE100BF31CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_IP";
+			remoteInfo = IP;
+		};
+		BE100BF41CC0C1370074900D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_TCP";
+			remoteInfo = TCP;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = /Users/oleg/Development/OpenSource/Zewo/TCP/Package.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncConnection.swift" /* AsyncConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncConnection.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncHost.swift" /* AsyncHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncHost.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncStream.swift" /* AsyncStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncStream.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncURIConnection.swift" /* AsyncURIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncURIConnection.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Byte.swift" /* Byte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Byte.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/C7.swift" /* C7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C7.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/CaseInsensitiveString.swift" /* CaseInsensitiveString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseInsensitiveString.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Closable.swift" /* Closable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Closable.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Connection.swift" /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/CustomDataStore.swift" /* CustomDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataStore.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Data.swift" /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Drain.swift" /* Drain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drain.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Host.swift" /* Host.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Query.swift" /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/QueryField.swift" /* QueryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryField.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Stream.swift" /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/StreamError.swift" /* StreamError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamError.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/StreamSequence.swift" /* StreamSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamSequence.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/Time.swift" /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/URI.swift" /* URI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URI.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/C7-0.4.2/Sources/URIConnection.swift" /* URIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URIConnection.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/chan.c" /* chan.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = chan.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/cr.c" /* cr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cr.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/debug.c" /* debug.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = debug.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/dns.c" /* dns.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dns.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/file.c" /* file.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = file.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/ip.c" /* ip.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ip.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/list.c" /* list.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/poller.c" /* poller.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = poller.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/slist.c" /* slist.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = slist.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/stack.c" /* stack.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/tcp.c" /* tcp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tcp.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/timer.c" /* timer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/udp.c" /* udp.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = udp.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/unix.c" /* unix.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = unix.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/CURIParser-0.4.0/uri_parser.c" /* uri_parser.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = uri_parser.c; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/IP-0.4.3/Source/IP.swift" /* IP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IP.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/IP-0.4.3/Source/IPError.swift" /* IPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPError.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/OperatingSystem-0.4.2/Sources/OperatingSystem.swift" /* OperatingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatingSystem.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/String-0.4.3/Source/String.swift" /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/URI-0.4.7/Sources/URI.swift" /* URI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URI.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/Channel.swift" /* Channel/Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel/Channel.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/ReceivingChannel.swift" /* Channel/ReceivingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel/ReceivingChannel.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/SendingChannel.swift" /* Channel/SendingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel/SendingChannel.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Coroutine/Coroutine.swift" /* Coroutine/Coroutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coroutine/Coroutine.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleChannel.swift" /* FallibleChannel/FallibleChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallibleChannel/FallibleChannel.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleReceivingChannel.swift" /* FallibleChannel/FallibleReceivingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallibleChannel/FallibleReceivingChannel.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleSendingChannel.swift" /* FallibleChannel/FallibleSendingChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallibleChannel/FallibleSendingChannel.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Once/Once.swift" /* Once/Once.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Once/Once.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Poll/Poll.swift" /* Poll/Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll/Poll.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Select/Select.swift" /* Select/Select.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Select/Select.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/TImer/Timer.swift" /* TImer/Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TImer/Timer.swift; sourceTree = "<group>"; };
+		"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Ticker/Ticker.swift" /* Ticker/Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker/Ticker.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Source/TCPConnection.swift /* TCPConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPConnection.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Source/TCPError.swift /* TCPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPError.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Source/TCPServer.swift /* TCPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPServer.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/TCP/TCPServerTests.swift /* TCPServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCPServerTests.swift; sourceTree = "<group>"; };
+		"_____Product_C7" /* libC7.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libC7.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_CLibvenice" /* libCLibvenice.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libCLibvenice.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_CURIParser" /* libCURIParser.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libCURIParser.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_IP" /* libIP.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libIP.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_OperatingSystem" /* libOperatingSystem.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libOperatingSystem.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_String" /* libString.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libString.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_TCP" /* libTCP.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libTCP.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_TCPTestSuite" /* TCPTestSuite.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; name = TCPTestSuite.xctest; path = TCP.testsuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_URI" /* libURI.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libURI.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_Venice" /* libVenice.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libVenice.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		"___LinkPhase_C7" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_CLibvenice" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_CURIParser" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_IP" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				BE100BD91CC0C1360074900D /* libC7.dylib in Frameworks */,
+				BE100BDA1CC0C1360074900D /* libCLibvenice.dylib in Frameworks */,
+				_LinkFileRef_OperatingSystem /* libOperatingSystem.dylib in Frameworks */,
+				_LinkFileRef_Venice /* libVenice.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_OperatingSystem" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_String" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				BE100BDB1CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_TCP" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				BE100BDE1CC0C1360074900D /* libCLibvenice.dylib in Frameworks */,
+				BE100BDF1CC0C1360074900D /* libC7.dylib in Frameworks */,
+				BE100BE01CC0C1360074900D /* libCURIParser.dylib in Frameworks */,
+				BE100BE11CC0C1360074900D /* libString.dylib in Frameworks */,
+				BE100BE21CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */,
+				BE100BE31CC0C1360074900D /* libVenice.dylib in Frameworks */,
+				_LinkFileRef_URI /* libURI.dylib in Frameworks */,
+				_LinkFileRef_IP /* libIP.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_TCPTestSuite" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				BE100BE41CC0C1360074900D /* libCLibvenice.dylib in Frameworks */,
+				BE100BE51CC0C1360074900D /* libC7.dylib in Frameworks */,
+				BE100BE61CC0C1360074900D /* libCURIParser.dylib in Frameworks */,
+				BE100BE71CC0C1360074900D /* libString.dylib in Frameworks */,
+				BE100BE81CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */,
+				BE100BE91CC0C1360074900D /* libVenice.dylib in Frameworks */,
+				BE100BEA1CC0C1360074900D /* libURI.dylib in Frameworks */,
+				BE100BEB1CC0C1360074900D /* libIP.dylib in Frameworks */,
+				_LinkFileRef_TCP /* libTCP.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_URI" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				BE100BDC1CC0C1360074900D /* libOperatingSystem.dylib in Frameworks */,
+				BE100BDD1CC0C1360074900D /* libC7.dylib in Frameworks */,
+				_LinkFileRef_CURIParser /* libCURIParser.dylib in Frameworks */,
+				_LinkFileRef_String /* libString.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_Venice" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_C7 /* libC7.dylib in Frameworks */,
+				_LinkFileRef_CLibvenice /* libCLibvenice.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		Dependencies_ /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_CLibvenice" /* CLibvenice */,
+				"_______Group_C7" /* C7 */,
+				"_______Group_Venice" /* Venice */,
+				"_______Group_OperatingSystem" /* OperatingSystem */,
+				"_______Group_IP" /* IP */,
+				"_______Group_String" /* String */,
+				"_______Group_CURIParser" /* CURIParser */,
+				"_______Group_URI" /* URI */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		TestProducts_ /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_____Product_TCPTestSuite" /* TCPTestSuite.xctest */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		"___RootGroup_" = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Sources_" /* Sources */,
+				Dependencies_ /* Dependencies */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"____Products_" /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				TestProducts_ /* Tests */,
+				"_____Product_CLibvenice" /* libCLibvenice.dylib */,
+				"_____Product_C7" /* libC7.dylib */,
+				"_____Product_Venice" /* libVenice.dylib */,
+				"_____Product_OperatingSystem" /* libOperatingSystem.dylib */,
+				"_____Product_IP" /* libIP.dylib */,
+				"_____Product_String" /* libString.dylib */,
+				"_____Product_CURIParser" /* libCURIParser.dylib */,
+				"_____Product_URI" /* libURI.dylib */,
+				"_____Product_TCP" /* libTCP.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"_____Sources_" /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_TCP" /* TCP */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_C7" /* C7 */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncConnection.swift" /* AsyncConnection.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncHost.swift" /* AsyncHost.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncStream.swift" /* AsyncStream.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/AsyncURIConnection.swift" /* AsyncURIConnection.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Byte.swift" /* Byte.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/C7.swift" /* C7.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/CaseInsensitiveString.swift" /* CaseInsensitiveString.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Closable.swift" /* Closable.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Connection.swift" /* Connection.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/CustomDataStore.swift" /* CustomDataStore.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Data.swift" /* Data.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Drain.swift" /* Drain.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Host.swift" /* Host.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Query.swift" /* Query.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/QueryField.swift" /* QueryField.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Stream.swift" /* Stream.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/StreamError.swift" /* StreamError.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/StreamSequence.swift" /* StreamSequence.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/Time.swift" /* Time.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/URI.swift" /* URI.swift */,
+				"__PBXFileRef_Packages/C7-0.4.2/Sources/URIConnection.swift" /* URIConnection.swift */,
+			);
+			name = C7;
+			path = "Packages/C7-0.4.2/Sources";
+			sourceTree = "<group>";
+		};
+		"_______Group_CLibvenice" /* CLibvenice */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/chan.c" /* chan.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/cr.c" /* cr.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/debug.c" /* debug.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/dns.c" /* dns.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/file.c" /* file.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/ip.c" /* ip.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/list.c" /* list.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/poller.c" /* poller.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/slist.c" /* slist.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/stack.c" /* stack.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/tcp.c" /* tcp.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/timer.c" /* timer.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/udp.c" /* udp.c */,
+				"__PBXFileRef_Packages/CLibvenice-0.4.2/Sources/unix.c" /* unix.c */,
+			);
+			name = CLibvenice;
+			path = "Packages/CLibvenice-0.4.2/Sources";
+			sourceTree = "<group>";
+		};
+		"_______Group_CURIParser" /* CURIParser */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/CURIParser-0.4.0/uri_parser.c" /* uri_parser.c */,
+			);
+			name = CURIParser;
+			path = "Packages/CURIParser-0.4.0";
+			sourceTree = "<group>";
+		};
+		"_______Group_IP" /* IP */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/IP-0.4.3/Source/IP.swift" /* IP.swift */,
+				"__PBXFileRef_Packages/IP-0.4.3/Source/IPError.swift" /* IPError.swift */,
+			);
+			name = IP;
+			path = "Packages/IP-0.4.3/Source";
+			sourceTree = "<group>";
+		};
+		"_______Group_OperatingSystem" /* OperatingSystem */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/OperatingSystem-0.4.2/Sources/OperatingSystem.swift" /* OperatingSystem.swift */,
+			);
+			name = OperatingSystem;
+			path = "Packages/OperatingSystem-0.4.2/Sources";
+			sourceTree = "<group>";
+		};
+		"_______Group_String" /* String */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/String-0.4.3/Source/String.swift" /* String.swift */,
+			);
+			name = String;
+			path = "Packages/String-0.4.3/Source";
+			sourceTree = "<group>";
+		};
+		"_______Group_TCP" /* TCP */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Source/TCPConnection.swift /* TCPConnection.swift */,
+				__PBXFileRef_Source/TCPError.swift /* TCPError.swift */,
+				__PBXFileRef_Source/TCPServer.swift /* TCPServer.swift */,
+			);
+			name = TCP;
+			path = Source;
+			sourceTree = "<group>";
+		};
+		"_______Group_TCPTestSuite" /* TCP.testsuite */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Tests/TCP/TCPServerTests.swift /* TCPServerTests.swift */,
+			);
+			name = TCP.testsuite;
+			path = Tests/TCP;
+			sourceTree = "<group>";
+		};
+		"_______Group_URI" /* URI */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/URI-0.4.7/Sources/URI.swift" /* URI.swift */,
+			);
+			name = URI;
+			path = "Packages/URI-0.4.7/Sources";
+			sourceTree = "<group>";
+		};
+		"_______Group_Venice" /* Venice */ = {
+			isa = PBXGroup;
+			children = (
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/Channel.swift" /* Channel/Channel.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/ReceivingChannel.swift" /* Channel/ReceivingChannel.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Channel/SendingChannel.swift" /* Channel/SendingChannel.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Coroutine/Coroutine.swift" /* Coroutine/Coroutine.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleChannel.swift" /* FallibleChannel/FallibleChannel.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleReceivingChannel.swift" /* FallibleChannel/FallibleReceivingChannel.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleSendingChannel.swift" /* FallibleChannel/FallibleSendingChannel.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Once/Once.swift" /* Once/Once.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Poll/Poll.swift" /* Poll/Poll.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Select/Select.swift" /* Select/Select.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/Ticker/Ticker.swift" /* Ticker/Ticker.swift */,
+				"__PBXFileRef_Packages/Venice-0.4.2/Source/Venice/TImer/Timer.swift" /* TImer/Timer.swift */,
+			);
+			name = Venice;
+			path = "Packages/Venice-0.4.2/Source/Venice";
+			sourceTree = "<group>";
+		};
+		"_______Tests_" /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_TCPTestSuite" /* TCP.testsuite */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"______Target_C7" /* C7 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_C7" /* Build configuration list for PBXNativeTarget "C7" */;
+			buildPhases = (
+				CompilePhase_C7 /* Sources */,
+				"___LinkPhase_C7" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = C7;
+			productName = C7;
+			productReference = "_____Product_C7" /* libC7.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_CLibvenice" /* CLibvenice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_CLibvenice" /* Build configuration list for PBXNativeTarget "CLibvenice" */;
+			buildPhases = (
+				CompilePhase_CLibvenice /* Sources */,
+				"___LinkPhase_CLibvenice" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CLibvenice;
+			productName = CLibvenice;
+			productReference = "_____Product_CLibvenice" /* libCLibvenice.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_CURIParser" /* CURIParser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_CURIParser" /* Build configuration list for PBXNativeTarget "CURIParser" */;
+			buildPhases = (
+				CompilePhase_CURIParser /* Sources */,
+				"___LinkPhase_CURIParser" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CURIParser;
+			productName = CURIParser;
+			productReference = "_____Product_CURIParser" /* libCURIParser.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_IP" /* IP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_IP" /* Build configuration list for PBXNativeTarget "IP" */;
+			buildPhases = (
+				CompilePhase_IP /* Sources */,
+				"___LinkPhase_IP" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_C7 /* PBXTargetDependency */,
+				__Dependency_CLibvenice /* PBXTargetDependency */,
+				__Dependency_OperatingSystem /* PBXTargetDependency */,
+				__Dependency_Venice /* PBXTargetDependency */,
+			);
+			name = IP;
+			productName = IP;
+			productReference = "_____Product_IP" /* libIP.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_OperatingSystem" /* OperatingSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_OperatingSystem" /* Build configuration list for PBXNativeTarget "OperatingSystem" */;
+			buildPhases = (
+				CompilePhase_OperatingSystem /* Sources */,
+				"___LinkPhase_OperatingSystem" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OperatingSystem;
+			productName = OperatingSystem;
+			productReference = "_____Product_OperatingSystem" /* libOperatingSystem.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_String" /* String */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_String" /* Build configuration list for PBXNativeTarget "String" */;
+			buildPhases = (
+				CompilePhase_String /* Sources */,
+				"___LinkPhase_String" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_OperatingSystem /* PBXTargetDependency */,
+			);
+			name = String;
+			productName = String;
+			productReference = "_____Product_String" /* libString.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_TCP" /* TCP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_TCP" /* Build configuration list for PBXNativeTarget "TCP" */;
+			buildPhases = (
+				CompilePhase_TCP /* Sources */,
+				"___LinkPhase_TCP" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_CLibvenice /* PBXTargetDependency */,
+				__Dependency_C7 /* PBXTargetDependency */,
+				__Dependency_CURIParser /* PBXTargetDependency */,
+				__Dependency_String /* PBXTargetDependency */,
+				__Dependency_OperatingSystem /* PBXTargetDependency */,
+				__Dependency_Venice /* PBXTargetDependency */,
+				__Dependency_URI /* PBXTargetDependency */,
+				__Dependency_IP /* PBXTargetDependency */,
+			);
+			name = TCP;
+			productName = TCP;
+			productReference = "_____Product_TCP" /* libTCP.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_TCPTestSuite" /* TCP.testsuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_TCPTestSuite" /* Build configuration list for PBXNativeTarget "TCP.testsuite" */;
+			buildPhases = (
+				CompilePhase_TCPTestSuite /* Sources */,
+				"___LinkPhase_TCPTestSuite" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_CLibvenice /* PBXTargetDependency */,
+				__Dependency_C7 /* PBXTargetDependency */,
+				__Dependency_CURIParser /* PBXTargetDependency */,
+				__Dependency_String /* PBXTargetDependency */,
+				__Dependency_OperatingSystem /* PBXTargetDependency */,
+				__Dependency_Venice /* PBXTargetDependency */,
+				__Dependency_URI /* PBXTargetDependency */,
+				__Dependency_IP /* PBXTargetDependency */,
+				__Dependency_TCP /* PBXTargetDependency */,
+			);
+			name = TCP.testsuite;
+			productName = TCPTestSuite;
+			productReference = "_____Product_TCPTestSuite" /* TCPTestSuite.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"______Target_URI" /* URI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_URI" /* Build configuration list for PBXNativeTarget "URI" */;
+			buildPhases = (
+				CompilePhase_URI /* Sources */,
+				"___LinkPhase_URI" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_OperatingSystem /* PBXTargetDependency */,
+				__Dependency_C7 /* PBXTargetDependency */,
+				__Dependency_CURIParser /* PBXTargetDependency */,
+				__Dependency_String /* PBXTargetDependency */,
+			);
+			name = URI;
+			productName = URI;
+			productReference = "_____Product_URI" /* libURI.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		"______Target_Venice" /* Venice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_Venice" /* Build configuration list for PBXNativeTarget "Venice" */;
+			buildPhases = (
+				CompilePhase_Venice /* Sources */,
+				"___LinkPhase_Venice" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_C7 /* PBXTargetDependency */,
+				__Dependency_CLibvenice /* PBXTargetDependency */,
+			);
+			name = Venice;
+			productName = Venice;
+			productReference = "_____Product_Venice" /* libVenice.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		__RootObject_ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "TCP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"______Target_CLibvenice" /* CLibvenice */,
+				"______Target_C7" /* C7 */,
+				"______Target_Venice" /* Venice */,
+				"______Target_OperatingSystem" /* OperatingSystem */,
+				"______Target_IP" /* IP */,
+				"______Target_String" /* String */,
+				"______Target_CURIParser" /* CURIParser */,
+				"______Target_URI" /* URI */,
+				"______Target_TCP" /* TCP */,
+				"______Target_TCPTestSuite" /* TCP.testsuite */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CompilePhase_C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncConnection.swift" /* AsyncConnection.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncHost.swift" /* AsyncHost.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncStream.swift" /* AsyncStream.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/AsyncURIConnection.swift" /* AsyncURIConnection.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Byte.swift" /* Byte.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/C7.swift" /* C7.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/CaseInsensitiveString.swift" /* CaseInsensitiveString.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Closable.swift" /* Closable.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Connection.swift" /* Connection.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/CustomDataStore.swift" /* CustomDataStore.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Data.swift" /* Data.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Drain.swift" /* Drain.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Host.swift" /* Host.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Query.swift" /* Query.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/QueryField.swift" /* QueryField.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Stream.swift" /* Stream.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/StreamError.swift" /* StreamError.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/StreamSequence.swift" /* StreamSequence.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/Time.swift" /* Time.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/URI.swift" /* URI.swift in Sources */,
+				"__src_cc_ref_Packages/C7-0.4.2/Sources/URIConnection.swift" /* URIConnection.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_CLibvenice /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/chan.c" /* chan.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/cr.c" /* cr.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/debug.c" /* debug.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/dns.c" /* dns.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/file.c" /* file.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/ip.c" /* ip.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/list.c" /* list.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/poller.c" /* poller.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/slist.c" /* slist.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/stack.c" /* stack.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/tcp.c" /* tcp.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/timer.c" /* timer.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/udp.c" /* udp.c in Sources */,
+				"__src_cc_ref_Packages/CLibvenice-0.4.2/Sources/unix.c" /* unix.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_CURIParser /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/CURIParser-0.4.0/uri_parser.c" /* uri_parser.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_IP /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/IP-0.4.3/Source/IP.swift" /* IP.swift in Sources */,
+				"__src_cc_ref_Packages/IP-0.4.3/Source/IPError.swift" /* IPError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_OperatingSystem /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/OperatingSystem-0.4.2/Sources/OperatingSystem.swift" /* OperatingSystem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_String /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/String-0.4.3/Source/String.swift" /* String.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_TCP /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Source/TCPConnection.swift /* TCPConnection.swift in Sources */,
+				__src_cc_ref_Source/TCPError.swift /* TCPError.swift in Sources */,
+				__src_cc_ref_Source/TCPServer.swift /* TCPServer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_TCPTestSuite /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Tests/TCP/TCPServerTests.swift /* TCPServerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_URI /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/URI-0.4.7/Sources/URI.swift" /* URI.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_Venice /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Channel/Channel.swift" /* Channel/Channel.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Channel/ReceivingChannel.swift" /* Channel/ReceivingChannel.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Channel/SendingChannel.swift" /* Channel/SendingChannel.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Coroutine/Coroutine.swift" /* Coroutine/Coroutine.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleChannel.swift" /* FallibleChannel/FallibleChannel.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleReceivingChannel.swift" /* FallibleChannel/FallibleReceivingChannel.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/FallibleChannel/FallibleSendingChannel.swift" /* FallibleChannel/FallibleSendingChannel.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Once/Once.swift" /* Once/Once.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Poll/Poll.swift" /* Poll/Poll.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Select/Select.swift" /* Select/Select.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/Ticker/Ticker.swift" /* Ticker/Ticker.swift in Sources */,
+				"__src_cc_ref_Packages/Venice-0.4.2/Source/Venice/TImer/Timer.swift" /* TImer/Timer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		__Dependency_C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_C7" /* C7 */;
+			targetProxy = BE100BEC1CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_CLibvenice /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_CLibvenice" /* CLibvenice */;
+			targetProxy = BE100BED1CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_CURIParser /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_CURIParser" /* CURIParser */;
+			targetProxy = BE100BF01CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_IP /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_IP" /* IP */;
+			targetProxy = BE100BF31CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_OperatingSystem /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_OperatingSystem" /* OperatingSystem */;
+			targetProxy = BE100BEE1CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_String /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_String" /* String */;
+			targetProxy = BE100BF11CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_TCP /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_TCP" /* TCP */;
+			targetProxy = BE100BF41CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_URI /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_URI" /* URI */;
+			targetProxy = BE100BF21CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+		__Dependency_Venice /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_Venice" /* Venice */;
+			targetProxy = BE100BEF1CC0C1370074900D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		_ReleaseConf_C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = C7;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_CLibvenice /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = CLibvenice;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_CURIParser /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = CURIParser;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_IP /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = "/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = IP;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_OperatingSystem /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = OperatingSystem;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_String /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = String;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_TCP /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = (
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include",
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CURIParser-0.4.0/include",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = TCP;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_TCPTestSuite /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				HEADER_SEARCH_PATHS = (
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include",
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CURIParser-0.4.0/include",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = TCPTestSuite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_URI /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = "/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CURIParser-0.4.0/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = URI;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		_ReleaseConf_Venice /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = "/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Venice;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		"___DebugConf_C7" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = C7;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_CLibvenice" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = CLibvenice;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_CURIParser" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = CURIParser;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_IP" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = "/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = IP;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_OperatingSystem" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = OperatingSystem;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_String" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = String;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_TCP" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = (
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include",
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CURIParser-0.4.0/include",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = TCP;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_TCPTestSuite" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				HEADER_SEARCH_PATHS = (
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include",
+					"/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CURIParser-0.4.0/include",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = TCPTestSuite;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_URI" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = "/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CURIParser-0.4.0/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = URI;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"___DebugConf_Venice" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_INSTALL_NAME_BASE = "$(CONFIGURATION_BUILD_DIR)";
+				ENABLE_TESTABILITY = YES;
+				HEADER_SEARCH_PATHS = "/Users/oleg/Development/OpenSource/Zewo/TCP/Packages/CLibvenice-0.4.2/Sources/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_MODULE_NAME = Venice;
+				PRODUCT_NAME = "lib$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		"_____Release_" /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		"___RootConfs_" /* Build configuration list for PBXProject "TCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_C7" /* Build configuration list for PBXNativeTarget "C7" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_C7" /* Debug */,
+				_ReleaseConf_C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_CLibvenice" /* Build configuration list for PBXNativeTarget "CLibvenice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_CLibvenice" /* Debug */,
+				_ReleaseConf_CLibvenice /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_CURIParser" /* Build configuration list for PBXNativeTarget "CURIParser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_CURIParser" /* Debug */,
+				_ReleaseConf_CURIParser /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_IP" /* Build configuration list for PBXNativeTarget "IP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_IP" /* Debug */,
+				_ReleaseConf_IP /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_OperatingSystem" /* Build configuration list for PBXNativeTarget "OperatingSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_OperatingSystem" /* Debug */,
+				_ReleaseConf_OperatingSystem /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_String" /* Build configuration list for PBXNativeTarget "String" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_String" /* Debug */,
+				_ReleaseConf_String /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_TCP" /* Build configuration list for PBXNativeTarget "TCP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_TCP" /* Debug */,
+				_ReleaseConf_TCP /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_TCPTestSuite" /* Build configuration list for PBXNativeTarget "TCP.testsuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_TCPTestSuite" /* Debug */,
+				_ReleaseConf_TCPTestSuite /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_URI" /* Build configuration list for PBXNativeTarget "URI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_URI" /* Debug */,
+				_ReleaseConf_URI /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_Venice" /* Build configuration list for PBXNativeTarget "Venice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_Venice" /* Debug */,
+				_ReleaseConf_Venice /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = __RootObject_ /* Project object */;
+}

@@ -67,7 +67,7 @@ public final class TCPConnection: Connection {
         let socket = try getSocket()
         try assertNotClosed()
         let bytesProcessed = data.withUnsafeBufferPointer {
-            tcpsend(socket, $0.baseAddress, $0.count, Int64(deadline))
+            tcpsend(socket, $0.baseAddress, $0.count, deadline.int64milliseconds)
         }
 
         try TCPError.assertNoSendError(withData: data, bytesProcessed: bytesProcessed)
@@ -85,7 +85,7 @@ public final class TCPConnection: Connection {
         let socket = try getSocket()
         try assertNotClosed()
 
-        tcpflush(socket, Int64(deadline))
+        tcpflush(socket, deadline.int64milliseconds)
         try TCPError.assertNoError()
     }
 
