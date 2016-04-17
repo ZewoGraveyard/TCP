@@ -23,95 +23,15 @@
 // SOFTWARE.
 
 public enum TCPError: ErrorProtocol {
-    case unknown(description: String)
-    case brokenPipe(description: String, data: Data)
-    case connectionResetByPeer(description: String, data: Data)
-    case noBufferSpaceAvailabe(description: String, data: Data)
-    case operationTimedOut(description: String, data: Data)
-    case closedSocket(description: String)
-
-    static func lastReceiveError(withData source: Data, bytesProcessed: Int) -> TCPError {
-        let data = Data(source.prefix(bytesProcessed))
-        return lastError(withData: data)
-    }
-
-    static func lastSendError(withData source: Data, bytesProcessed: Int) -> TCPError {
-        let data = Data(source.suffix(bytesProcessed))
-        return lastError(withData: data)
-    }
-
-    static func lastError(withData data: Data) -> TCPError {
-        switch errno {
-        case EPIPE:
-            return .brokenPipe(description: lastErrorDescription, data: data)
-        case ECONNRESET:
-            return .connectionResetByPeer(description: lastErrorDescription, data: data)
-        case ENOBUFS:
-            return .noBufferSpaceAvailabe(description: lastErrorDescription, data: data)
-        case ETIMEDOUT:
-            return .operationTimedOut(description: lastErrorDescription, data: data)
-        default:
-            return .unknown(description: lastErrorDescription)
-        }
-    }
-
-    static var lastErrorDescription: String {
-        return String(validatingUTF8: strerror(errno))!
-    }
-
-    static var lastError: TCPError {
-        switch errno {
-        case EPIPE:
-            return .brokenPipe(description: lastErrorDescription, data: Data())
-        case ECONNRESET:
-            return .connectionResetByPeer(description: lastErrorDescription, data: Data())
-        case ENOBUFS:
-            return .noBufferSpaceAvailabe(description: lastErrorDescription, data: Data())
-        case ETIMEDOUT:
-            return .operationTimedOut(description: lastErrorDescription, data: Data())
-        default:
-            return .unknown(description: lastErrorDescription)
-        }
-    }
-
-    static var closedSocketError: TCPError {
-        return TCPError.closedSocket(description: "Closed socket")
-    }
-
-    static func assertNoError() throws {
-        if errno != 0 {
-            throw TCPError.lastError
-        }
-    }
-
-    static func assertNoReceiveError(withData data: Data, bytesProcessed: Int) throws {
-        if errno != 0 {
-            throw TCPError.lastReceiveError(withData: data, bytesProcessed: bytesProcessed)
-        }
-    }
-
-    static func assertNoSendError(withData data: Data, bytesProcessed: Int) throws {
-        if errno != 0 {
-            throw TCPError.lastSendError(withData: data, bytesProcessed: bytesProcessed)
-        }
-    }
+    case failedToSendCompletely(remaining: Data)
+    case failedToReceiveCompletely(received: Data)
 }
 
 extension TCPError: CustomStringConvertible {
     public var description: String {
         switch self {
-        case unknown(let description):
-            return description
-        case .brokenPipe(let description, _):
-            return description
-        case connectionResetByPeer(let description, _):
-            return description
-        case noBufferSpaceAvailabe(let description, _):
-            return description
-        case operationTimedOut(let description, _):
-            return description
-        case closedSocket(let description):
-            return description
+        case failedToSendCompletely: return "Failed to send completely"
+        case failedToReceiveCompletely: return "Failed to receive completely"
         }
     }
 }

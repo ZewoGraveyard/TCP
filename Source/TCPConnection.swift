@@ -30,141 +30,97 @@ public final class TCPConnection: Connection {
     var socket: tcpsock?
     public private(set) var closed = true
 
-    init(with socket: tcpsock) throws {
-        self.ip = try IP(address: tcpaddr(socket))
+    internal init(with socket: tcpsock) throws {
+        let address = tcpaddr(socket)
+        try ensureLastOperationSucceeded()
+        self.ip = IP(address: address)
         self.socket = socket
         self.closed = false
-        try assertNotClosed()
     }
 
     public init(to host: String, on port: Int) throws {
-        if host == "0.0.0.0" || host == "127.0.0.1" {
-            self.ip = try IP(localAddress: host, port: port)
-        } else {
-            self.ip = try IP(remoteAddress: host, port: port)
-        }
+        self.ip = try IP(remoteAddress: host, port: port)
     }
 
     public func open(timingOut deadline: Double) throws {
-        socket = tcpconnect(ip.address, deadline.int64milliseconds)
-
-        if socket == nil {
-            throw TCPError.closedSocket(description: "Unable to connect.")
-        }
-
+        self.socket = tcpconnect(ip.address, deadline.int64milliseconds)
+        try ensureLastOperationSucceeded()
         self.closed = false
     }
 
-    public func send(_ data: Data) throws {
-        try send(data, flushing: true, timingOut: .never)
-    }
-    
     public func send(_ data: Data, timingOut deadline: Double) throws {
         try send(data, flushing: true, timingOut: deadline)
     }
     
     public func send(_ data: Data, flushing flush: Bool, timingOut deadline: Double) throws {
         let socket = try getSocket()
-        try assertNotClosed()
-        let bytesProcessed = data.withUnsafeBufferPointer {
+        try ensureStreamIsOpen()
+
+        let remaining = data.withUnsafeBufferPointer {
             tcpsend(socket, $0.baseAddress, $0.count, deadline.int64milliseconds)
         }
 
-        try TCPError.assertNoSendError(withData: data, bytesProcessed: bytesProcessed)
+        do {
+            try ensureLastOperationSucceeded()
+        } catch {
+            throw TCPError.failedToSendCompletely(remaining: Data(data.suffix(remaining)))
+        }
 
         if flush {
             try self.flush()
         }
     }
-
-    public func flush() throws {
-        try flush(timingOut: .never)
-    }
     
     public func flush(timingOut deadline: Double) throws {
         let socket = try getSocket()
-        try assertNotClosed()
+        try ensureStreamIsOpen()
 
         tcpflush(socket, deadline.int64milliseconds)
-        try TCPError.assertNoError()
-    }
-
-    public func receive(max byteCount: Int) throws -> Data {
-        return try receive(upTo: byteCount, timingOut: .never)
+        try ensureLastOperationSucceeded()
     }
 
     public func receive(upTo byteCount: Int, timingOut deadline: Double = .never) throws -> Data {
         let socket = try getSocket()
-        try assertNotClosed()
+        try ensureStreamIsOpen()
 
         var data = Data.buffer(with: byteCount)
-        let bytesProcessed = data.withUnsafeMutableBufferPointer {
+        let received = data.withUnsafeMutableBufferPointer {
             tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline.int64milliseconds)
         }
 
-        try TCPError.assertNoReceiveError(withData: data, bytesProcessed: bytesProcessed)
-        return Data(data.prefix(bytesProcessed))
-    }
+        let receivedData = Data(data.prefix(received))
 
-    public func receive(from start: Int, to end: Int, timingOut deadline: Double = .never) throws -> Data {
-        let socket = try getSocket()
-        try assertNotClosed()
-
-        if start <= 0 || end <= 0 {
-            throw TCPError.unknown(description: "Marks should be > 0")
+        do {
+            try ensureLastOperationSucceeded()
+        } catch {
+            throw TCPError.failedToReceiveCompletely(received: receivedData)
         }
 
-        if start > end {
-            throw TCPError.unknown(description: "loweWaterMark should be less than highWaterMark")
-        }
-
-        var data = Data.buffer(with: end)
-        let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvlh(socket, $0.baseAddress, start, $0.count, deadline.int64milliseconds)
-        }
-
-        try TCPError.assertNoReceiveError(withData: data, bytesProcessed: bytesProcessed)
-        return Data(data.prefix(bytesProcessed))
-    }
-
-    public func receive(upTo byteCount: Int, until delimiter: String, timingOut deadline: Double = .never) throws -> Data {
-        let socket = try getSocket()
-        try assertNotClosed()
-
-
-        var data = Data.buffer(with: byteCount)
-        let bytesProcessed = data.withUnsafeMutableBufferPointer {
-            tcprecvuntil(socket, $0.baseAddress, $0.count, delimiter, delimiter.utf8.count, deadline.int64milliseconds)
-        }
-
-        try TCPError.assertNoReceiveError(withData: data, bytesProcessed: bytesProcessed)
-        return Data(data.prefix(bytesProcessed))
+        return receivedData
     }
 
     public func close() throws {
-        guard let socket = self.socket else {
-            closed = true
-            throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
-        }
+        let socket = try getSocket()
 
         if closed {
             throw ClosableError.alreadyClosed
         }
 
-        closed = true
         tcpclose(socket)
+        try ensureLastOperationSucceeded()
+        closed = true
     }
 
     private func getSocket() throws -> tcpsock {
         guard let socket = self.socket else {
-            throw TCPError.closedSocket(description: "Connection has not been initialized. You must first open to the connection.")
+            throw SystemError.socketIsNotConnected
         }
         return socket
     }
 
-    private func assertNotClosed() throws {
+    private func ensureStreamIsOpen() throws {
         if closed {
-            throw TCPError.closedSocketError
+            throw StreamError.closedStream(data: [])
         }
     }
 
@@ -173,7 +129,6 @@ public final class TCPConnection: Connection {
             tcpclose(socket)
         }
     }
-
 }
 
 extension TCPConnection {
@@ -183,11 +138,6 @@ extension TCPConnection {
 
     public func receiveString(upTo codeUnitCount: Int, timingOut deadline: Double = .never) throws -> String {
         let result = try receive(upTo: codeUnitCount, timingOut: deadline)
-        return try String(data: result)
-    }
-
-    public func receiveString(upTo codeUnitCount: Int, until delimiter: String, timingOut deadline: Double = .never) throws -> String {
-        let result = try receive(upTo: codeUnitCount, until: delimiter, timingOut: deadline)
         return try String(data: result)
     }
 }
