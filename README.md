@@ -14,7 +14,7 @@ TCP
 ##Usage
 
 
-```
+```swift
 co {
   do {
     let server = try TCPServer(for: URI("tcp://0.0.0.0:8080"))
