@@ -99,6 +99,26 @@ public final class TCPConnection: Connection {
         return receivedData
     }
 
+    public func receive(_ byteCount: Int, timingOut deadline: Double = .never) throws -> Data {
+        let socket = try getSocket()
+        try ensureStreamIsOpen()
+
+        var data = Data.buffer(with: byteCount)
+        let received = data.withUnsafeMutableBufferPointer {
+            tcprecv(socket, $0.baseAddress, $0.count, deadline.int64milliseconds)
+        }
+
+        let receivedData = Data(data.prefix(received))
+
+        do {
+            try ensureLastOperationSucceeded()
+        } catch {
+            throw TCPError.failedToReceiveCompletely(received: receivedData)
+        }
+
+        return receivedData
+    }
+
     public func close() throws {
         let socket = try getSocket()
 
