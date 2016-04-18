@@ -38,7 +38,7 @@ public final class TCPConnection: Connection {
         self.closed = false
     }
 
-    public init(to host: String, on port: Int) throws {
+    public init(host: String, port: Int) throws {
         self.ip = try IP(remoteAddress: host, port: port)
     }
 

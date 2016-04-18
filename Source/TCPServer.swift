@@ -28,7 +28,7 @@ import CLibvenice
 public final class TCPServer: Host {
     private let socket: tcpsock?
 
-    public init(at host: String, on port: Int, queuing backlog: Int = 128, reusePort: Bool = false) throws {
+    public init(host: String, port: Int, backlog: Int = 128, reusePort: Bool = false) throws {
         let ip = try IP(localAddress: host, port: port)
         self.socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
         try ensureLastOperationSucceeded()
