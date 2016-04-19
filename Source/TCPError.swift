@@ -23,15 +23,15 @@
 // SOFTWARE.
 
 public enum TCPError: ErrorProtocol {
-    case failedToSendCompletely(remaining: Data)
-    case failedToReceiveCompletely(received: Data)
+    case didSendDataWithError(error: SystemError, remaining: Data)
+    case didReceiveDataWithError(error: SystemError, received: Data)
 }
 
 extension TCPError: CustomStringConvertible {
     public var description: String {
         switch self {
-        case failedToSendCompletely: return "Failed to send completely"
-        case failedToReceiveCompletely: return "Failed to receive completely"
+        case didSendDataWithError(let error, _): return "\(error)"
+        case didReceiveDataWithError(let error, _): return "\(error)"
         }
     }
 }

@@ -56,14 +56,16 @@ public final class TCPConnection: Connection {
         let socket = try getSocket()
         try ensureStreamIsOpen()
 
-        let remaining = data.withUnsafeBufferPointer {
+        let sent = data.withUnsafeBufferPointer {
             tcpsend(socket, $0.baseAddress, $0.count, deadline.int64milliseconds)
         }
 
         do {
             try ensureLastOperationSucceeded()
-        } catch {
-            throw TCPError.failedToSendCompletely(remaining: Data(data.suffix(remaining)))
+        } catch let error as SystemError where sent > 0 {
+            throw TCPError.didSendDataWithError(error: error, remaining: Data(data.suffix(sent)))
+        } catch let error as SystemError {
+            throw error
         }
 
         if flush {
@@ -92,8 +94,10 @@ public final class TCPConnection: Connection {
 
         do {
             try ensureLastOperationSucceeded()
-        } catch {
-            throw TCPError.failedToReceiveCompletely(received: receivedData)
+        } catch let error as SystemError where received > 0 {
+            throw TCPError.didReceiveDataWithError(error: error, received: receivedData)
+        } catch let error as SystemError {
+            throw error
         }
 
         return receivedData
@@ -112,8 +116,10 @@ public final class TCPConnection: Connection {
 
         do {
             try ensureLastOperationSucceeded()
-        } catch {
-            throw TCPError.failedToReceiveCompletely(received: receivedData)
+        } catch let error as SystemError where received > 0 {
+            throw TCPError.didReceiveDataWithError(error: error, received: receivedData)
+        } catch let error as SystemError {
+            throw error
         }
 
         return receivedData
