@@ -140,7 +140,7 @@ public final class TCPConnection: Connection {
 
     private func ensureStreamIsOpen() throws {
         if closed {
-            throw StreamError.closedStream
+            throw StreamError.closedStream(data: [])
         }
     }
 
