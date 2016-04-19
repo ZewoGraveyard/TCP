@@ -64,8 +64,6 @@ public final class TCPConnection: Connection {
             try ensureLastOperationSucceeded()
         } catch let error as SystemError where sent > 0 {
             throw TCPError.didSendDataWithError(error: error, remaining: Data(data.suffix(sent)))
-        } catch let error as SystemError {
-            throw error
         }
 
         if flush {
@@ -96,8 +94,6 @@ public final class TCPConnection: Connection {
             try ensureLastOperationSucceeded()
         } catch let error as SystemError where received > 0 {
             throw TCPError.didReceiveDataWithError(error: error, received: receivedData)
-        } catch let error as SystemError {
-            throw error
         }
 
         return receivedData
@@ -118,8 +114,6 @@ public final class TCPConnection: Connection {
             try ensureLastOperationSucceeded()
         } catch let error as SystemError where received > 0 {
             throw TCPError.didReceiveDataWithError(error: error, received: receivedData)
-        } catch let error as SystemError {
-            throw error
         }
 
         return receivedData
