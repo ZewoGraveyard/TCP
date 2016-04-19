@@ -26,18 +26,17 @@ import CLibvenice
 @_exported import IP
 
 public final class TCPServer: Host {
-    private let socket: tcpsock
+    private let socket: tcpsock?
 
-    public init(at host: String, on port: Int, queuing backlog: Int = 128, reusingPort reusePort: Bool = false) throws {
+    public init(host: String, port: Int, backlog: Int = 128, reusePort: Bool = false) throws {
         let ip = try IP(localAddress: host, port: port)
         self.socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
-        if nil == self.socket {
-            print("\n\nPort \(port) is already in use.\n\n")
-            throw TCPError.unknown(description: "Port \(port) is already in use.")
-        }
+        try ensureLastOperationSucceeded()
     }
     
-    public func accept(timingOut deadline: Double) throws -> Stream {
-        return try TCPConnection(with: tcpaccept(socket, Int64(deadline)))
+    public func accept(timingOut deadline: Double = .never) throws -> Stream {
+        let socket = tcpaccept(self.socket, deadline.int64milliseconds)
+        try ensureLastOperationSucceeded()
+        return try TCPConnection(with: socket)
     }
 }

@@ -4,28 +4,50 @@ import XCTest
 class TCPServerTests: XCTestCase {
     static var allTests : [(String, TCPServerTests -> () throws -> Void)] {
         return [
-                   ("testCreateServer", testCreateServer),
+                   ("testServerClient", testServerClient),
+                   ("testTwoServersOnTheSamePortThrows", testTwoServersOnTheSamePortThrows),
+                   ("testTwoServersOnTheSamePortWithReusePortDoesNotThrow", testTwoServersOnTheSamePortWithReusePortDoesNotThrow),
         ]
     }
     
-    func testCreateServer() throws {
+    func testServerClient() throws {
         co {
             do {
-                let server = try TCPServer(for: URI("tcp://0.0.0.0:8080"))
+                let server = try TCPServer(host: "0.0.0.0", port: 8080)
                 let connection = try server.accept()
-                let data = try connection.receive(max: 1024)
+                let data = try connection.receive(upTo: 1024)
                 try connection.send(data)
             } catch {
-                print(error)
+                XCTFail("\(error)")
             }
         }
-        // while(true) {}
-        let connection = try TCPConnection(to: URI("tcp://0.0.0.0:8080"))
+
+        let connection = try TCPConnection(host: "0.0.0.0", port: 8080)
         try connection.open()
         try connection.send("hello")
         let data =  try connection.receive(upTo: 1024)
-        print(data)
-        XCTAssert(data == "hello", "Something is severely wrong here.")
+        XCTAssert(data == "hello", "Should've received hello")
     }
-    
+
+    func testTwoServersOnTheSamePortThrows() throws {
+        co {
+            do {
+                let server = try TCPServer(host: "0.0.0.0", port: 8081)
+                try server.accept()
+            } catch {
+                XCTFail("\(error)")
+            }
+        }
+
+        var failed = false
+
+        do {
+            let server = try TCPServer(host: "0.0.0.0", port: 8081)
+            try server.accept()
+        } catch {
+            failed = true
+        }
+
+        XCTAssert(failed, "Should fail with: Address already in use")
+    }
 }
