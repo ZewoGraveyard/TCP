@@ -81,32 +81,36 @@ public final class TCPConnection: Connection {
         let socket = try getSocket()
         try ensureStreamIsOpen()
 
-        var data = Data.buffer(with: byteCount)
-        let received = data.withUnsafeMutableBufferPointer {
-            tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline.int64milliseconds)
-        }
+        let buffer = UnsafeMutablePointer<Byte>(allocatingCapacity: byteCount)
+        defer { buffer.deallocateCapacity(byteCount) }
+
+        let received = tcprecvlh(socket, buffer, 1, byteCount, deadline.int64milliseconds)
 
         if received == 0 {
             try ensureLastOperationSucceeded()
         }
 
-        return Data(data.prefix(received))
+        let bufferPointer = UnsafeBufferPointer(start: buffer, count: received)
+
+        return Data(Array(bufferPointer))
     }
 
     public func receive(_ byteCount: Int, timingOut deadline: Double = .never) throws -> Data {
         let socket = try getSocket()
         try ensureStreamIsOpen()
 
-        var data = Data.buffer(with: byteCount)
-        let received = data.withUnsafeMutableBufferPointer {
-            tcprecv(socket, $0.baseAddress, $0.count, deadline.int64milliseconds)
-        }
+        let buffer = UnsafeMutablePointer<Byte>(allocatingCapacity: byteCount)
+        defer { buffer.deallocateCapacity(byteCount) }
+
+        let received = tcprecv(socket, buffer, byteCount, deadline.int64milliseconds)
 
         if received == 0 {
             try ensureLastOperationSucceeded()
         }
 
-        return Data(data.prefix(received))
+        let bufferPointer = UnsafeBufferPointer(start: buffer, count: received)
+
+        return Data(Array(bufferPointer))
     }
 
     public func close() throws {
