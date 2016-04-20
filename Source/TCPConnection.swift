@@ -60,10 +60,8 @@ public final class TCPConnection: Connection {
             tcpsend(socket, $0.baseAddress, $0.count, deadline.int64milliseconds)
         }
 
-        do {
+        if sent == 0 {
             try ensureLastOperationSucceeded()
-        } catch let error as SystemError where sent > 0 {
-            throw TCPError.didSendDataWithError(error: error, remaining: Data(data.suffix(sent)))
         }
 
         if flush {
@@ -88,15 +86,11 @@ public final class TCPConnection: Connection {
             tcprecvlh(socket, $0.baseAddress, 1, $0.count, deadline.int64milliseconds)
         }
 
-        let receivedData = Data(data.prefix(received))
-
-        do {
+        if received == 0 {
             try ensureLastOperationSucceeded()
-        } catch let error as SystemError where received > 0 {
-            throw TCPError.didReceiveDataWithError(error: error, received: receivedData)
         }
 
-        return receivedData
+        return Data(data.prefix(received))
     }
 
     public func receive(_ byteCount: Int, timingOut deadline: Double = .never) throws -> Data {
@@ -108,15 +102,11 @@ public final class TCPConnection: Connection {
             tcprecv(socket, $0.baseAddress, $0.count, deadline.int64milliseconds)
         }
 
-        let receivedData = Data(data.prefix(received))
-
-        do {
+        if received == 0 {
             try ensureLastOperationSucceeded()
-        } catch let error as SystemError where received > 0 {
-            throw TCPError.didReceiveDataWithError(error: error, received: receivedData)
         }
 
-        return receivedData
+        return Data(data.prefix(received))
     }
 
     public func close() throws {
