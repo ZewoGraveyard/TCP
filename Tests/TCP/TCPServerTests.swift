@@ -9,7 +9,7 @@ class TCPServerTests: XCTestCase {
                    ("testTwoServersOnTheSamePortWithReusePortDoesNotThrow", testTwoServersOnTheSamePortWithReusePortDoesNotThrow),
         ]
     }
-    
+
     func testServerClient() throws {
         co {
             do {
@@ -50,9 +50,9 @@ class TCPServerTests: XCTestCase {
 
         XCTAssert(failed, "Should fail with: Address already in use")
     }
-    
+
     func testTwoServersOnTheSamePortWithReusePortDoesNotThrow() throws {
-        
+
         co {
             do {
                 let server = try TCPServer(host: "0.0.0.0", port: 8082, reusePort: true)
@@ -61,9 +61,9 @@ class TCPServerTests: XCTestCase {
                 XCTFail("\(error)")
             }
         }
-        
+
         var failed = false
-        
+
         co {
             do {
                 let server = try TCPServer(host: "0.0.0.0", port: 8082, reusePort: true)
@@ -72,11 +72,11 @@ class TCPServerTests: XCTestCase {
                 failed = true
             }
         }
-        
+
         nap(for: 2.seconds)
-        
+
         XCTAssert(!failed, "Should not fail when reusing port.")
-        
+
     }
 
 }
