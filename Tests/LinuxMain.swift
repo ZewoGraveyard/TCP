@@ -1,7 +1,7 @@
 #if os(Linux)
 
 import XCTest
-@testable import C7TestSuite
+@testable import TCPTestSuite
 
 XCTMain([
     testCase(TCPServerTests.allTests)
