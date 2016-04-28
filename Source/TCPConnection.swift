@@ -51,7 +51,7 @@ public final class TCPConnection: Connection {
     public func send(_ data: Data, timingOut deadline: Double) throws {
         try send(data, flushing: true, timingOut: deadline)
     }
-    
+
     public func send(_ data: Data, flushing flush: Bool, timingOut deadline: Double) throws {
         let socket = try getSocket()
         try ensureStreamIsOpen()
@@ -68,7 +68,7 @@ public final class TCPConnection: Connection {
             try self.flush()
         }
     }
-    
+
     public func flush(timingOut deadline: Double) throws {
         let socket = try getSocket()
         try ensureStreamIsOpen()
@@ -87,7 +87,11 @@ public final class TCPConnection: Connection {
         }
 
         if received == 0 {
+          do {
             try ensureLastOperationSucceeded()
+          } catch SystemError.connectionResetByPeer {
+            throw StreamError.closedStream(data:Data(data.prefix(received)))
+          }
         }
 
         return Data(data.prefix(received))
