@@ -87,10 +87,10 @@ public final class TCPConnection: Connection {
         }
 
         if received == 0 {
-          do {
-            try ensureLastOperationSucceeded()
-          } catch SystemError.connectionResetByPeer {
-            throw StreamError.closedStream(data:Data(data.prefix(received)))
+            do {
+                try ensureLastOperationSucceeded()
+            } catch SystemError.connectionResetByPeer {
+                throw StreamError.closedStream(data:Data(data.prefix(received)))
           }
         }
 
