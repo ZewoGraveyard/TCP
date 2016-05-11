@@ -2,7 +2,7 @@ import XCTest
 @testable import TCP
 
 class TCPServerTests: XCTestCase {
-    static var allTests : [(String, TCPServerTests -> () throws -> Void)] {
+    static var allTests : [(String, (TCPServerTests) -> () throws -> Void)] {
         return [
                    ("testServerClient", testServerClient),
                    ("testTwoServersOnTheSamePortThrows", testTwoServersOnTheSamePortThrows),
