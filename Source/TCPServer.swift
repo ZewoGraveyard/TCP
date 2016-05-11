@@ -37,6 +37,6 @@ public final class TCPServer: Host {
     public func accept(timingOut deadline: Double = .never) throws -> Stream {
         let socket = tcpaccept(self.socket, deadline.int64milliseconds)
         try ensureLastOperationSucceeded()
-        return try TCPConnection(with: socket)
+        return try TCPConnection(with: socket!)
     }
 }
