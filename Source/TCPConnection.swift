@@ -38,8 +38,8 @@ public final class TCPConnection: Connection {
         self.closed = false
     }
 
-    public init(host: String, port: Int) throws {
-        self.ip = try IP(remoteAddress: host, port: port)
+    public init(host: String, port: Int, timingOut deadline: Double = .never) throws {
+        self.ip = try IP(remoteAddress: host, port: port, deadline: deadline)
     }
 
     public func open(timingOut deadline: Double) throws {
