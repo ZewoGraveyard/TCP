@@ -33,7 +33,7 @@ class TCPServerTests: XCTestCase {
         co {
             do {
                 let server = try TCPServer(host: "0.0.0.0", port: 8081)
-                try server.accept()
+                _ = try server.accept()
             } catch {
                 XCTFail("\(error)")
             }
@@ -43,7 +43,7 @@ class TCPServerTests: XCTestCase {
 
         do {
             let server = try TCPServer(host: "0.0.0.0", port: 8081)
-            try server.accept()
+            _ = try server.accept()
         } catch {
             failed = true
         }
@@ -56,7 +56,7 @@ class TCPServerTests: XCTestCase {
         co {
             do {
                 let server = try TCPServer(host: "0.0.0.0", port: 8082, reusePort: true)
-                try server.accept()
+                _ = try server.accept()
             } catch {
                 XCTFail("\(error)")
             }
@@ -67,7 +67,7 @@ class TCPServerTests: XCTestCase {
         co {
             do {
                 let server = try TCPServer(host: "0.0.0.0", port: 8082, reusePort: true)
-                try server.accept()
+                _ = try server.accept()
             } catch {
                 failed = true
             }
