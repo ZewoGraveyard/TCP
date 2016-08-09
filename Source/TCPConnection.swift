@@ -91,7 +91,7 @@ public final class TCPConnection: Connection {
                 try ensureLastOperationSucceeded()
             } catch SystemError.connectionResetByPeer {
                 closed = true
-                throw StreamError.closedStream(data: Data(data.prefix(received)))
+                throw StreamError.closedStream(data: Data(UnsafeMutableBufferPointer(start: buffer, count: received)))
           }
         }
 
