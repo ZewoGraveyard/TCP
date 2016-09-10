@@ -22,7 +22,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-public enum TCPError: ErrorProtocol {
+import struct C7.Data
+
+public enum TCPError: Error {
     case didSendDataWithError(error: SystemError, remaining: Data)
     case didReceiveDataWithError(error: SystemError, received: Data)
 }
@@ -30,8 +32,8 @@ public enum TCPError: ErrorProtocol {
 extension TCPError: CustomStringConvertible {
     public var description: String {
         switch self {
-        case didSendDataWithError(let error, _): return "\(error)"
-        case didReceiveDataWithError(let error, _): return "\(error)"
+        case .didSendDataWithError(let error, _): return "\(error)"
+        case .didReceiveDataWithError(let error, _): return "\(error)"
         }
     }
 }

@@ -23,6 +23,8 @@
 // SOFTWARE.
 
 import CLibvenice
+import protocol C7.Host
+import protocol C7.Stream
 @_exported import IP
 
 public final class TCPServer: Host {
@@ -33,7 +35,7 @@ public final class TCPServer: Host {
         self.socket = tcplisten(ip.address, Int32(backlog), reusePort ? 1 : 0)
         try ensureLastOperationSucceeded()
     }
-    
+
     public func accept(timingOut deadline: Double = .never) throws -> Stream {
         let socket = tcpaccept(self.socket, deadline.int64milliseconds)
         try ensureLastOperationSucceeded()
