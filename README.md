@@ -14,22 +14,30 @@
 
 ##Usage
 
-
 ```swift
 co {
-  do {
-    let server = try TCPServer(for: URI("tcp://0.0.0.0:8080"))
-    let connection = try server.accept()
-    let data = try connection.receive(max: 1024)
-    try connection.send(data)
-  } catch {
-    print(error)
-  }
+    do {
+        // create an echo server on localhost:8080
+        let server = try TCPServer(host: "127.0.0.1", port: 8080)
+        while true {
+            // waits for an incoming connection, receives 1024 bytes, sends them back
+            let connection = try server.accept()
+            let data = try connection.receive(upTo: 1024)
+            try connection.send(data)
+        }
+    } catch {
+        print(error)
+    }
 }
 
-let connection = try TCPConnection(to: URI("tcp://127.0.0.1:8080"))
+nap(for: 100.milliseconds)
+
+// create a connection to server at localhost:8080
+let connection = try TCPConnection(host: "0.0.0.0", port: 8080)
+// opens the connection, sends "hello"
 try connection.open()
 try connection.send("hello")
+// waits for a message, prints it out
 let data =  try connection.receive(upTo: 1024)
 print(data)
 ```
@@ -41,7 +49,7 @@ import PackageDescription
 
 let package = Package(
     dependencies: [
-        .Package(url: "https://github.com/VeniceX/TCP.git", majorVersion: 0, minor: 8)
+        .Package(url: "https://github.com/VeniceX/TCP.git", majorVersion: 0, minor: 10)
     ]
 )
 ```
@@ -62,7 +70,7 @@ This project is released under the MIT license. See [LICENSE](LICENSE) for detai
 
 [swift-badge]: https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat
 [swift-url]: https://swift.org
-[zewo-badge]: https://img.shields.io/badge/Zewo-0.5-FF7565.svg?style=flat
+[zewo-badge]: https://img.shields.io/badge/Zewo-0.7-FF7565.svg?style=flat
 [zewo-url]: http://zewo.io
 [platform-badge]: https://img.shields.io/badge/Platforms-OS%20X%20--%20Linux-lightgray.svg?style=flat
 [platform-url]: https://swift.org

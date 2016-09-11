@@ -23,6 +23,7 @@
 // SOFTWARE.
 
 import CLibvenice
+import C7
 @_exported import IP
 
 public final class TCPConnection: Connection {
@@ -140,7 +141,7 @@ public final class TCPConnection: Connection {
     }
 
     deinit {
-        if let socket = socket where !closed {
+        if let socket = socket, !closed {
             tcpclose(socket)
         }
     }

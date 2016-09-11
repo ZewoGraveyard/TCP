@@ -22,16 +22,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-public enum TCPError: ErrorProtocol {
-    case didSendDataWithError(error: SystemError, remaining: Data)
-    case didReceiveDataWithError(error: SystemError, received: Data)
+import C7
+
+public enum TCPError: Error {
+    case didSendData(error: SystemError, remaining: Data)
+    case didReceiveData(error: SystemError, received: Data)
 }
 
 extension TCPError: CustomStringConvertible {
     public var description: String {
         switch self {
-        case didSendDataWithError(let error, _): return "\(error)"
-        case didReceiveDataWithError(let error, _): return "\(error)"
+        case .didSendData(let error, _): return "\(error)"
+        case .didReceiveData(let error, _): return "\(error)"
         }
     }
 }
