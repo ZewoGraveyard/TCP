@@ -23,8 +23,7 @@
 // SOFTWARE.
 
 import CLibvenice
-import protocol C7.Host
-import protocol C7.Stream
+import C7
 @_exported import IP
 
 public final class TCPServer: Host {

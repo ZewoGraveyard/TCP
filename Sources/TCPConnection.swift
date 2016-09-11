@@ -23,11 +23,7 @@
 // SOFTWARE.
 
 import CLibvenice
-import protocol C7.Connection
-import struct C7.Data
-import enum C7.StreamError
-import enum C7.ClosableError
-import protocol C7.DataConvertible
+import C7
 @_exported import IP
 
 public final class TCPConnection: Connection {
@@ -70,7 +66,7 @@ public final class TCPConnection: Connection {
         }
 
         if flush {
-            try self.flush(timingOut: 200.milliseconds)
+            try self.flush()
         }
     }
 
